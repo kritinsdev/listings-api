@@ -28,7 +28,7 @@ set_exception_handler([ErrorHandler::class, "handleException"]);
 
 header("Content-type: application/json; charset=UTF-8");
 
-$parts = explode("/", $_SERVER["REQUEST_URI"]);
+$parts = explode("/", rtrim($_SERVER["REQUEST_URI"], '/'));
 
 $database = new Database($dbHost, $dbName, $dbUser, $dbPass);
 

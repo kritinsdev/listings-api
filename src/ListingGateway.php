@@ -63,15 +63,17 @@ class ListingGateway
         return $lastInsertId;
     }
 
-    public function getByModel($model): array
+    public function getByModel($model_id): array
     {
-        $sql = "SELECT *
-                FROM listings
-                WHERE model_id = :model
-                ORDER BY added DESC";
+        $sql = "SELECT listings.*, models.model_name AS model
+        FROM listings 
+        JOIN models ON listings.model_id = models.id
+        WHERE listings.model_id = :model_id
+        ORDER BY listings.added DESC";
+
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':model', $model, \PDO::PARAM_INT);
+        $stmt->bindValue(':model_id', $model_id, \PDO::PARAM_INT);
         $stmt->execute();
 
         $data = [];
