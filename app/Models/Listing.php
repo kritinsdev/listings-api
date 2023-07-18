@@ -21,6 +21,6 @@ class Listing extends Model
     public $timestamps = false;
 
     public function phoneModel() {
-        return $this->belongsTo(PhoneModel::class);
+        return $this->belongsTo(PhoneModel::class, 'model_id');
     }
 }

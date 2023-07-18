@@ -10,4 +10,9 @@ class PhoneModel extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function listings() {
+        return $this->hasMany(Listing::class, 'model_id');
+    }
+    
 }
