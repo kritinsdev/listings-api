@@ -15,6 +15,7 @@ class TrustHosts extends Middleware
     {
         return [
             $this->allSubdomainsOfApplicationUrl(),
+            'https://aquamarine-syrniki-705c65.netlify.app'
         ];
     }
 }

@@ -6,20 +6,24 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 
 class ListingsController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
+{   
     public function index(Request $request)
     {
-        $url = $request->query('url');
-    
-        if ($url) {
-            $listings = Listing::where('url', $url)->get();
-        } else {
-            $listings = Listing::all();
+        // Start building a query
+        $query = Listing::query();
+
+        if ($request->has('url')) {
+            $url = $request->query('url');
+            $query->where('url', $url);
         }
-    
+
+        if ($request->has('model_id')) {
+            $modelId = $request->query('model_id');
+            $query->where('model_id', $modelId);
+        }
+
+        $listings = $query->get();
+
         return response()->json($listings);
     }
 
