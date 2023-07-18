@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Listing;
 use Illuminate\Http\Request;
 
 class ListingsController extends Controller
@@ -9,25 +10,37 @@ class ListingsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $url = $request->query('url');
+    
+        if ($url) {
+            $listings = Listing::where('url', $url)->get();
+        } else {
+            $listings = Listing::all();
+        }
+    
+        return response()->json($listings);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    }
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'model_id' => 'required|exists:phone_models,id',
+            'price' => 'required|numeric',
+            'memory' => 'integer',
+            'battery_capacity' => 'numeric',
+            'added' => 'required|string',
+            'url' => 'required',
+        ]);
+
+        $listing = Listing::create($validatedData);
+
+        return response()->json($listing, 201);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PhoneModel;
 use Illuminate\Http\Request;
 
 class PhoneModelsController extends Controller
@@ -11,7 +12,9 @@ class PhoneModelsController extends Controller
      */
     public function index()
     {
-        //
+        $models = PhoneModel::all();
+
+        return response()->json($models);
     }
 
     /**
