@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ListingCreated;
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ListingsController extends Controller
 {
@@ -44,6 +46,8 @@ class ListingsController extends Controller
         ]);
 
         $listing = Listing::create($validatedData);
+
+        Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
 
         return response()->json($listing, 201);
     }
