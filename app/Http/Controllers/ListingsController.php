@@ -29,6 +29,10 @@ class ListingsController extends Controller
         return response()->json($listings);
     }
     
+    public function getUrls() {
+        $urls = Listing::select('url')->get();
+        return response()->json($urls);
+    }
 
     public function create(Request $request)
     {

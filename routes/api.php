@@ -11,5 +11,7 @@ Route::prefix('v1')->group(function () {
     Route::put('/listings/{id}', [ListingsController::class, 'update']);
     Route::delete('/listings/{id}', [ListingsController::class, 'destroy']);
 
+    Route::get('/urls', [ListingsController::class, 'getUrls']);
+
     Route::get('/models', [PhoneModelsController::class, 'index']);
 });
