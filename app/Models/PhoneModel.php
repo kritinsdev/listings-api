@@ -15,4 +15,8 @@ class PhoneModel extends Model
         return $this->hasMany(Listing::class, 'model_id');
     }
     
+    public function modelStats()
+    {
+        return $this->hasOne(ModelStat::class, 'model_id');
+    }
 }
