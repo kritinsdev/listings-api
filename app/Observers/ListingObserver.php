@@ -7,9 +7,6 @@ use App\Models\ModelStat;
 
 class ListingObserver
 {
-    /**
-     * Handle the Listing "created" event.
-     */
     public function created(Listing $listing): void
     {
         $modelStat = ModelStat::firstOrCreate(
@@ -36,22 +33,22 @@ class ListingObserver
      */
     public function deleted(Listing $listing): void
     {
-           // Get related ModelStat record
-    $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
+        // Get related ModelStat record
+        $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
 
-    // Decrease the count by 1
-    $modelStat->count = $modelStat->count - 1;
+        // Decrease the count by 1
+        $modelStat->count = $modelStat->count - 1;
 
-    // Recalculate the average price
-    $totalPrice = Listing::where('model_id', $listing->model_id)->sum('price');
-    $modelStat->average_price = $totalPrice / $modelStat->count;
+        // Recalculate the average price
+        $totalPrice = Listing::where('model_id', $listing->model_id)->sum('price');
+        $modelStat->average_price = $totalPrice / $modelStat->count;
 
-    // Get the lowest price
-    $lowestPrice = Listing::where('model_id', $listing->model_id)->min('price');
-    $modelStat->lowest_price = $lowestPrice;
+        // Get the lowest price
+        $lowestPrice = Listing::where('model_id', $listing->model_id)->min('price');
+        $modelStat->lowest_price = $lowestPrice;
 
-    // Save the model
-    $modelStat->save();
+        // Save the model
+        $modelStat->save();
     }
 
     /**

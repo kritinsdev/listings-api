@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PhoneModel;
+use App\Models\ModelStat;
 use Illuminate\Http\Request;
 
-class PhoneModelsController extends Controller
+class ModelStatController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $models = PhoneModel::with('modelStats')->get();
+        $modelStats = ModelStat::all();
 
-        return response()->json($models);
+        return response()->json($modelStats);
     }
 
     /**

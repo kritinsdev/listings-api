@@ -17,7 +17,6 @@ return new class extends Migration
             $table->integer('count');
             $table->decimal('average_price', 8, 2);
             $table->decimal('lowest_price', 8, 2);
-            $table->timestamps();
         });
     }
 

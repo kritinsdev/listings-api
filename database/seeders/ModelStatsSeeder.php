@@ -14,7 +14,6 @@ class ModelStatsSeeder extends Seeder
      */
     public function run(): void
     {
-         // Get distinct models
          $models = Listing::select('model_id')->distinct()->get();
 
          foreach ($models as $model) {
