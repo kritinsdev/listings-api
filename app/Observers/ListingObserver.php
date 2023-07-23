@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Listing;
 use App\Models\ModelStat;
+use App\Models\PriceHistory;
 
 class ListingObserver
 {
@@ -20,35 +21,34 @@ class ListingObserver
         $modelStat->save();
     }
 
-    /**
-     * Handle the Listing "updated" event.
-     */
     public function updated(Listing $listing): void
     {
-        //
+            if ($listing->isDirty('price')) {
+                PriceHistory::create([
+                    'listing_id' => $listing->id,
+                    'old_price' => $listing->getOriginal('price'),
+                    'new_price' => $listing->price,
+                    'change_date' => now(),
+                ]);
+            }
+
+            $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
+            if ($modelStat) {
+                $modelStat->average_price = Listing::where('model_id', $listing->model_id)->average('price');
+                $modelStat->save();
+            }
     }
 
-    /**
-     * Handle the Listing "deleted" event.
-     */
     public function deleted(Listing $listing): void
     {
-        // Get related ModelStat record
-        $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
+        // $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
+        // $modelStat->count = $modelStat->count - 1;
+        // $totalPrice = Listing::where('model_id', $listing->model_id)->sum('price');
+        // $modelStat->average_price = $totalPrice / $modelStat->count;
+        // $lowestPrice = Listing::where('model_id', $listing->model_id)->min('price');
+        // $modelStat->lowest_price = $lowestPrice;
 
-        // Decrease the count by 1
-        $modelStat->count = $modelStat->count - 1;
-
-        // Recalculate the average price
-        $totalPrice = Listing::where('model_id', $listing->model_id)->sum('price');
-        $modelStat->average_price = $totalPrice / $modelStat->count;
-
-        // Get the lowest price
-        $lowestPrice = Listing::where('model_id', $listing->model_id)->min('price');
-        $modelStat->lowest_price = $lowestPrice;
-
-        // Save the model
-        $modelStat->save();
+        // $modelStat->save();
     }
 
     /**

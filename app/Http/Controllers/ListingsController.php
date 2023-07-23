@@ -15,7 +15,7 @@ class ListingsController extends Controller
         $url = $request->query('url');
         $model_id = $request->query('model_id');
     
-        $query = Listing::with('phoneModel')->orderBy('added', 'desc');
+        $query = Listing::with('phoneModel')->where('active', 1)->orderBy('added', 'desc');
     
         if ($url) {
             $query->where('url', $url);
@@ -31,14 +31,11 @@ class ListingsController extends Controller
     }
     
     public function getUrls() {
-        $urls = Listing::select('url')->get();
+        $urls = Listing::select(['id', 'url'])->get();
+
         return response()->json($urls);
     }
 
-    public function create(Request $request)
-    {
-
-    }
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -73,12 +70,20 @@ class ListingsController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'price' => 'required|numeric',
+            'active' => 'required|boolean'
+        ]);
+    
+        $listing = Listing::findOrFail($id);
+    
+        $listing->price = $validatedData['price'];
+    
+        $listing->save();
+    
+        return response()->json($listing, 200);
     }
 
     /**
