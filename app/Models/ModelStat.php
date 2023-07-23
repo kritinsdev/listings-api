@@ -11,6 +11,8 @@ class ModelStat extends Model
 
     protected $fillable = ['model_id', 'count', 'average_price', 'lowest_price'];
 
+    public $timestamps = false;
+
     public function phoneModel()
     {
         return $this->belongsTo(PhoneModel::class, 'model_id');
