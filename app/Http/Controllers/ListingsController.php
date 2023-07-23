@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ListingResource;
 use App\Mail\ListingCreated;
 use App\Models\Listing;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class ListingsController extends Controller
     
         $listings = $query->get();
     
-        return response()->json($listings);
+        return ListingResource::collection($listings);
     }
     
     public function getUrls() {

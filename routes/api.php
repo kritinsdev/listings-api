@@ -15,5 +15,5 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/models', [PhoneModelsController::class, 'index']);
 
-    // Route::get('/stats', [ModelStatController::class, 'index']);
+    Route::get('/stats', [ModelStatController::class, 'index']);
 });

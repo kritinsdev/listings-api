@@ -23,4 +23,8 @@ class Listing extends Model
     public function phoneModel() {
         return $this->belongsTo(PhoneModel::class, 'model_id');
     }
+
+    public function modelStats() {
+        return $this->hasOne(ModelStat::class, 'model_id', 'model_id');
+    }
 }
