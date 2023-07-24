@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ListingResource;
 use App\Mail\ListingCreated;
 use App\Models\Listing;
+use App\Models\ModelStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -14,23 +15,24 @@ class ListingsController extends Controller
     {
         $url = $request->query('url');
         $model_id = $request->query('model_id');
-    
+
         $query = Listing::with('phoneModel')->where('active', 1)->orderBy('added', 'desc');
-    
+
         if ($url) {
             $query->where('url', $url);
         }
-        
+
         if ($model_id) {
             $query->where('model_id', $model_id);
         }
-    
+
         $listings = $query->get();
-    
+
         return ListingResource::collection($listings);
     }
-    
-    public function getUrls() {
+
+    public function getUrls()
+    {
         $urls = Listing::select(['id', 'url'])->where('active', 1)->get();
 
         return response()->json($urls);
@@ -48,8 +50,12 @@ class ListingsController extends Controller
         ]);
 
         $listing = Listing::create($validatedData);
+        
+        $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
 
-        // Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
+        if ($listing->price < $modelStat->average_price) {
+            Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
+        }
 
         return response()->json($listing, 201);
     }
@@ -76,17 +82,17 @@ class ListingsController extends Controller
             'price' => 'numeric',
             'active' => 'required|boolean'
         ]);
-    
+
         $listing = Listing::findOrFail($id);
-    
-        if(!empty($validatedData['price'])) {
+
+        if (!empty($validatedData['price'])) {
             $listing->price = $validatedData['price'];
         }
 
         $listing->active = $validatedData['active'];
-    
+
         $listing->save();
-    
+
         return response()->json($listing, 200);
     }
 
@@ -97,17 +103,17 @@ class ListingsController extends Controller
     {
         // Find the listing by id
         $listing = Listing::find($id);
-    
+
         // If listing is not found, return error response
-        if(!$listing) {
+        if (!$listing) {
             return response()->json(['error' => 'Listing not found'], 404);
         }
-    
+
         // Delete the listing
         $listing->delete();
-    
+
         // Return a successful response
         return response()->json(['message' => 'Listing successfully deleted'], 200);
     }
-    
+
 }
