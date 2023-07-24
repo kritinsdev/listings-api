@@ -27,4 +27,10 @@ class Listing extends Model
     public function modelStats() {
         return $this->hasOne(ModelStat::class, 'model_id', 'model_id');
     }
+    
+    public function priceHistories()
+{
+    return $this->hasMany(PriceHistory::class);
+}
+
 }

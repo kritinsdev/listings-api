@@ -49,7 +49,7 @@ class ListingsController extends Controller
 
         $listing = Listing::create($validatedData);
 
-        Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
+        // Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
 
         return response()->json($listing, 201);
     }
@@ -73,13 +73,17 @@ class ListingsController extends Controller
     public function update(Request $request, string $id)
     {
         $validatedData = $request->validate([
-            'price' => 'required|numeric',
+            'price' => 'numeric',
             'active' => 'required|boolean'
         ]);
     
         $listing = Listing::findOrFail($id);
     
-        $listing->price = $validatedData['price'];
+        if(!empty($validatedData['price'])) {
+            $listing->price = $validatedData['price'];
+        }
+
+        $listing->active = $validatedData['active'];
     
         $listing->save();
     
