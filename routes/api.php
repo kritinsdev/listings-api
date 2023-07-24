@@ -8,6 +8,7 @@ use App\Http\Controllers\ModelStatController;
 Route::prefix('v1')->group(function () {
     Route::get('/listings', [ListingsController::class, 'index']);
     Route::post('/listings', [ListingsController::class, 'store']);
+    Route::delete('/listings/{id}', [ListingsController::class, 'destroy']);
     Route::put('/listings/{id}', [ListingsController::class, 'update']);
     
     Route::get('/urls', [ListingsController::class, 'getUrls']);

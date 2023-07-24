@@ -41,19 +41,16 @@ class ListingObserver
 
     public function deleted(Listing $listing): void
     {
-        // $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
-        // $modelStat->count = $modelStat->count - 1;
-        // $totalPrice = Listing::where('model_id', $listing->model_id)->sum('price');
-        // $modelStat->average_price = $totalPrice / $modelStat->count;
-        // $lowestPrice = Listing::where('model_id', $listing->model_id)->min('price');
-        // $modelStat->lowest_price = $lowestPrice;
+        $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
+        $modelStat->count = $modelStat->count - 1;
+        $totalPrice = Listing::where('model_id', $listing->model_id)->sum('price');
+        $modelStat->average_price = $totalPrice / $modelStat->count;
+        $lowestPrice = Listing::where('model_id', $listing->model_id)->min('price');
+        $modelStat->lowest_price = $lowestPrice;
 
-        // $modelStat->save();
+        $modelStat->save();
     }
 
-    /**
-     * Handle the Listing "restored" event.
-     */
     public function restored(Listing $listing): void
     {
         //
