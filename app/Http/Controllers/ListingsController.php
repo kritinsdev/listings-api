@@ -50,10 +50,10 @@ class ListingsController extends Controller
         ]);
 
         $listing = Listing::create($validatedData);
-        
+
         $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
 
-        if ($listing->price < $modelStat->average_price) {
+        if (($modelStat->average_price - $listing->price) > 50) {
             Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
         }
 
