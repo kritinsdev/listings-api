@@ -31,7 +31,7 @@ class ListingsController extends Controller
     }
     
     public function getUrls() {
-        $urls = Listing::select(['id', 'url'])->get();
+        $urls = Listing::select(['id', 'url'])->where('active', 1)->get();
 
         return response()->json($urls);
     }
