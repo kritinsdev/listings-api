@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListingsController;
-use App\Http\Controllers\PhoneModelsController;
+use App\Http\Controllers\ListingModelsController;
 use App\Http\Controllers\ModelStatController;
 
 Route::prefix('v1')->group(function () {
@@ -13,7 +13,7 @@ Route::prefix('v1')->group(function () {
     
     Route::get('/urls', [ListingsController::class, 'getUrls']);
 
-    Route::get('/models', [PhoneModelsController::class, 'index']);
+    Route::get('/models', [ListingModelsController::class, 'index']);
 
     Route::get('/stats', [ModelStatController::class, 'index']);
 });

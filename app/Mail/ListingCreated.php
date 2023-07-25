@@ -24,13 +24,13 @@ class ListingCreated extends Mailable
     {
         $this->listing = $listing;
         $this->modelStat = ModelStat::where('model_id', $listing->model_id)->first();
-        $this->model_name = $listing->phoneModel ? $listing->phoneModel->model_name : 'Unknown';
+        $this->model_name = $listing->listingModel ? $listing->listingModel->model_name : 'Unknown';
     }
 
     public function build()
     {
         return $this->view('emails.listing_created')
-        ->subject('Difference: +' . $this->modelStat->average_price - $this->listing->price . '€' . ' (iPhone' . $this->listing->phoneModel->model_name . ')')
+        ->subject('Difference: +' . $this->modelStat->average_price - $this->listing->price . '€' . ' (iPhone' . $this->listing->listingModel->model_name . ')')
         ->with([
             'listing' => $this->listing,
             'model_name' => $this->model_name,

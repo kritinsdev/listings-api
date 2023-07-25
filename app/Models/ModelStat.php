@@ -13,8 +13,8 @@ class ModelStat extends Model
 
     public $timestamps = false;
 
-    public function phoneModel()
+    public function listingModel()
     {
-        return $this->belongsTo(PhoneModel::class, 'model_id');
+        return $this->belongsTo(ListingModel::class, 'model_id');
     }
 }

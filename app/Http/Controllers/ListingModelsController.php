@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PhoneModel;
+use App\Models\ListingModel;
 use Illuminate\Http\Request;
 
-class PhoneModelsController extends Controller
+class ListingModelsController extends Controller
 {
     public function index()
     {
-        $models = PhoneModel::with('modelStats')->get();
+        $models = ListingModel::with('modelStats')->get();
 
         return response()->json($models);
     }

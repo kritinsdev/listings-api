@@ -25,7 +25,7 @@ class ListingResource extends JsonResource
             'battery_capacity' => $this->battery_capacity,
             'added' => $this->added,
             'url' => $this->url,
-            'model' => $this->phoneModel->model_name,  
+            'model' => $this->listingModel->model_name,  
             'average_model_price' => round($this->modelStats->average_price, 0)
         ];
     }

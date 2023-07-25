@@ -16,7 +16,7 @@ class ListingsController extends Controller
         $url = $request->query('url');
         $model_id = $request->query('model_id');
 
-        $query = Listing::with('phoneModel')->where('active', 1)->orderBy('added', 'desc');
+        $query = Listing::with('listingModel')->where('active', 1)->orderBy('added', 'desc');
 
         if ($url) {
             $query->where('url', $url);
@@ -42,9 +42,8 @@ class ListingsController extends Controller
     {
         $validatedData = $request->validate([
             'model_id' => 'required|exists:phone_models,id',
+            'category_id' => 'required|exists:phone_models,id',
             'price' => 'required|numeric',
-            'memory' => 'integer',
-            'battery_capacity' => 'numeric',
             'added' => 'required|string',
             'url' => 'required',
         ]);
