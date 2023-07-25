@@ -33,7 +33,7 @@ class ListingCreated extends Mailable
         ->subject('Difference: +' . $this->modelStat->average_price - $this->listing->price . '€' . ' (iPhone' . $this->listing->phoneModel->model_name . ')')
         ->with([
             'listing' => $this->listing,
-            'model_name' => $this->model_name
+            'model_name' => $this->model_name,
         ]);
     }
 }
