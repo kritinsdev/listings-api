@@ -60,8 +60,8 @@ class ListingsController extends Controller
 
         $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
 
-        if (($modelStat->average_price - $listing->price) >= 90) {
-            // Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
+        if (($modelStat->average_price - $listing->price) >= 69) {
+            Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
         }
 
         return response()->json($listing, 201);
