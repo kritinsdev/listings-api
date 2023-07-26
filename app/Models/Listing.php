@@ -15,6 +15,7 @@ class Listing extends Model
         'price',
         'added',
         'url',
+        'site'
     ];
 
     public $timestamps = false;

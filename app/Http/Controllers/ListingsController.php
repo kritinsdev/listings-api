@@ -31,10 +31,17 @@ class ListingsController extends Controller
         return ListingResource::collection($listings);
     }
 
-    public function getUrls()
+    public function getUrls(Request $request)
     {
-        $urls = Listing::select(['id', 'url'])->where('active', 1)->get();
-
+        $site = $request->query('site');
+        $query = Listing::select(['id', 'url'])->where('active', 1);
+    
+        if ($site !== null) {
+            $query->where('site', $site);
+        }
+    
+        $urls = $query->get();
+    
         return response()->json($urls);
     }
 
@@ -46,6 +53,7 @@ class ListingsController extends Controller
             'price' => 'required|numeric',
             'added' => 'required|string',
             'url' => 'required',
+            'site' => 'required|string',
         ]);
 
         $listing = Listing::create($validatedData);
