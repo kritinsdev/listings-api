@@ -41,8 +41,8 @@ class ListingsController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'model_id' => 'required|exists:phone_models,id',
-            'category_id' => 'required|exists:phone_models,id',
+            'model_id' => 'required|exists:listing_models,id',
+            'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
             'added' => 'required|string',
             'url' => 'required',
@@ -53,7 +53,7 @@ class ListingsController extends Controller
         $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
 
         if (($modelStat->average_price - $listing->price) >= 90) {
-            Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
+            // Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
         }
 
         return response()->json($listing, 201);

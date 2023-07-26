@@ -21,12 +21,12 @@ class ListingResource extends JsonResource
             'id' => $this->id,
             'price' => $this->price,
             'old_price' => $oldPrice,
-            'memory' => $this->memory,
-            'battery_capacity' => $this->battery_capacity,
+            'category' => $this->category->name,
             'added' => $this->added,
             'url' => $this->url,
             'model' => $this->listingModel->model_name,  
-            'average_model_price' => round($this->modelStats->average_price, 0)
+            'average_model_price' => round($this->modelStats->average_price, 0),
+            'price_history' => $this->priceHistories,
         ];
     }
 }
