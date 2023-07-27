@@ -34,7 +34,7 @@ class ListingsController extends Controller
     public function getUrls(Request $request)
     {
         $site = $request->query('site');
-        $query = Listing::select(['id', 'url'])->where('active', 1);
+        $query = Listing::select(['id', 'url']);
     
         if ($site !== null) {
             $query->where('site', $site);
