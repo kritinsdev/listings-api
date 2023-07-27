@@ -13,7 +13,10 @@ class Authenticate extends Middleware
     protected function redirectTo(Request $request): ?string
     {
         if (!$request->expectsJson()) {
-            abort(401, 'Authentication Required.');  // send a 401 Unauthorized response
+            abort(401, 'Authentication Required.');
+            return null; // Explicitly return null if aborting.
         }
+        return null; // You might want to replace this with the URL you want to redirect to.
     }
+    
 }

@@ -21,7 +21,6 @@ class ListingResource extends JsonResource
             'id' => $this->id,
             'price' => $this->price,
             'old_price' => $oldPrice,
-            'category' => $this->category->id,
             'added' => $this->added,
             'url' => $this->url,
             'model' => $this->listingModel->model_name,  
