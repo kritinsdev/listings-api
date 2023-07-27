@@ -14,9 +14,9 @@ class Authenticate extends Middleware
     {
         if (!$request->expectsJson()) {
             abort(401, 'Authentication Required.');
-            return null; // Explicitly return null if aborting.
+            return null;
         }
-        return null; // You might want to replace this with the URL you want to redirect to.
+        return null;
     }
     
 }
