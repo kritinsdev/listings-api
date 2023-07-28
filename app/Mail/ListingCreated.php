@@ -30,7 +30,7 @@ class ListingCreated extends Mailable
     public function build()
     {
         return $this->view('emails.listing_created')
-        ->subject('Difference: +' . $this->modelStat->average_price - $this->listing->price . '€' . ' (iPhone' . $this->listing->listingModel->model_name . ')')
+        ->subject('Difference: +' . $this->modelStat->average_price - $this->listing->price . '€' . ' (' . $this->listing->listingModel->model_name . ')')
         ->with([
             'listing' => $this->listing,
             'model_name' => $this->model_name,
