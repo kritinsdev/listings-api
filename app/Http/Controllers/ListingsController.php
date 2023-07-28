@@ -15,6 +15,7 @@ class ListingsController extends Controller
     {
         $url = $request->query('url');
         $model_id = $request->query('model_id');
+        $category = ($request->query('category')) ? $request->query('category') : 1;
 
         $query = Listing::with('listingModel')->where('active', 1)->orderBy('added', 'desc');
 
@@ -24,6 +25,10 @@ class ListingsController extends Controller
 
         if ($model_id) {
             $query->where('model_id', $model_id);
+        }
+
+        if($category) {
+            $query->where('category_id', $category);
         }
 
         $listings = $query->get();

@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class ListingModelsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $models = ListingModel::with('modelStats')->get();
+        $models = ListingModel::with('modelStat')->get();
 
         return response()->json($models);
     }
