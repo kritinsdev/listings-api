@@ -34,7 +34,12 @@ class ListingsController extends Controller
     public function getUrls(Request $request)
     {
         $site = $request->query('site');
+        $active = $request->query('active');
         $query = Listing::select(['id', 'url']);
+    
+        if($active !== null) {
+            $query->where('active', $active);
+        }
     
         if ($site !== null) {
             $query->where('site', $site);
@@ -42,9 +47,9 @@ class ListingsController extends Controller
     
         $urls = $query->get();
     
-        return response()->json($urls);
+        return $urls;
     }
-
+    
     public function store(Request $request)
     {
         $validatedData = $request->validate([
