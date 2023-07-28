@@ -15,7 +15,7 @@ class ListingsController extends Controller
     {
         $url = $request->query('url');
         $model_id = $request->query('model_id');
-        $category = ($request->query('category')) ? $request->query('category') : 1;
+        $category = $request->query('category_id');
 
         $query = Listing::with('listingModel')->where('active', 1)->orderBy('added', 'desc');
 
