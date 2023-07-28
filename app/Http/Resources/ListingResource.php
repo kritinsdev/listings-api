@@ -19,13 +19,14 @@ class ListingResource extends JsonResource
 
         return [
             'id' => $this->id,
+            'model' => $this->listingModel->model_name,  
             'price' => $this->price,
             'old_price' => $oldPrice,
-            'added' => $this->added,
-            'url' => $this->url,
-            'model' => $this->listingModel->model_name,  
             'average_model_price' => round($this->modelStats->average_price, 0),
             'price_history' => $this->priceHistories,
+            'url' => $this->url,
+            'site' => $this->site,
+            'added' => $this->added,
         ];
     }
 }
