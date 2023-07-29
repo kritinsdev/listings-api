@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\Blacklist;
 use App\Models\Listing;
 use App\Models\ModelStat;
 use App\Models\PriceHistory;
@@ -43,10 +44,17 @@ class ListingObserver
     {
         $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
         $modelStat->count = $modelStat->count - 1;
+
         $totalPrice = Listing::where('model_id', $listing->model_id)->sum('price');
         $modelStat->average_price = $totalPrice / $modelStat->count;
+
         $lowestPrice = Listing::where('model_id', $listing->model_id)->min('price');
         $modelStat->lowest_price = $lowestPrice;
+
+        $blacklist = new Blacklist;
+        $blacklist->url = $listing->url;
+        $blacklist->site = $listing->site;
+        $blacklist->save();
 
         $modelStat->save();
     }
