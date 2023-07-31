@@ -20,19 +20,19 @@
                     <a href="{{ route('home') }}">Listings</a>
                 </li>
                 <li>
+                    <a href="{{ route('statistics') }}">Statistics</a>
+                </li>
+                <li>
                     <a href="{{ route('inventory') }}">Inventory</a>
                 </li>
-                <div id="statistics" style="display:flex;align-items:center;color:#fff;font-size:24px;">Stats</div>
-                <li>
-                    <form method="POST" action="{{ route('logout') }}" style="display:flex; height:100%;">
-                        @csrf
-                        <button type="submit">Logout</button>
-                    </form>
-                </li>
-
             </ul>
-
         </nav>
+        <div>
+            <form method="POST" action="{{ route('logout') }}" style="display:flex; height:100%;">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
+        </div>
     </header>
     <main>
         <section class="filters">

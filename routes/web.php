@@ -17,11 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('home');
-    })->name('home');;
+    })->name('home');
+
+    Route::get('/statistics', function () {
+        return view('statistics');
+    })->name('statistics');
 
     Route::get('/inventory', function () {
         return view('inventory');
-    })->name('inventory');;
+    })->name('inventory');
 });
 
 require __DIR__.'/auth.php';

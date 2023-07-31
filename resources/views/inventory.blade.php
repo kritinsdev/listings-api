@@ -19,21 +19,23 @@
                     <a href="{{ route('home') }}">Listings</a>
                 </li>
                 <li>
-                    <a href="{{ route('inventory') }}">Inventory</a>
+                    <a href="{{ route('statistics') }}">Statistics</a>
                 </li>
                 <li>
-                    <form method="POST" action="{{ route('logout') }}" style="display:flex; height:100%;">
-                        @csrf
-                        <button type="submit">Logout</button>
-                    </form>
+                    <a href="{{ route('inventory') }}">Inventory</a>
                 </li>
             </ul>
         </nav>
+        <div>
+            <form method="POST" action="{{ route('logout') }}" style="display:flex; height:100%;">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
+        </div>
     </header>
     <main>
         <div class="table-wrap">
             <div class="table">
-
                 <div class="row header">
                     <div class="cell">
                         Listing ID
@@ -52,6 +54,9 @@
                     </div>
                     <div class="cell">
                         Sold For
+                    </div>
+                    <div class="cell">
+                        Profit
                     </div>
                 </div>
 
@@ -72,6 +77,9 @@
                         -
                     </div>
                     <div class="cell" data-title="Date Sold">
+                        -
+                    </div>
+                    <div class="cell" data-title="Profit">
                         -
                     </div>
                 </div>
@@ -95,6 +103,9 @@
                     <div class="cell" data-title="Date Sold">
                         -
                     </div>
+                    <div class="cell" data-title="Profit">
+                        -
+                    </div>
                 </div>
 
                 <div class="row">
@@ -116,16 +127,13 @@
                     <div class="cell" data-title="Date Sold">
                         -
                     </div>
+                    <div class="cell" data-title="Profit">
+                        -
+                    </div>
                 </div>
             </div>
         </div>
-
-
-        <!-- <div class="loader">
-        <div class="loader-content">
-            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-        </div>
-    </div> -->
 </body>
 
 </html>
+

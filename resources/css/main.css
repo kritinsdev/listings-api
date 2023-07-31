@@ -23,7 +23,6 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  overflow: hidden;
 }
 
 /*
@@ -250,7 +249,7 @@ select:hover {
 header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 12px 24px;
   background-color: #192b5fed;
 }
@@ -265,6 +264,7 @@ header nav ul {
   list-style: none;
   display: flex;
   gap: 16px;
+  padding:0;
 }
 
 header nav ul li a,
@@ -428,7 +428,7 @@ header nav ul li div {
 
 .table {
   margin: 40px 0;
-  width: 50%;
+  width: 66.33%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   display: table;
   font-size: 24px;
@@ -501,3 +501,23 @@ header nav ul li div {
 }
 
 /* ======================= TABLE ======================= */
+table {
+  color: #333;
+  background: white;
+  border: 1px solid grey;
+  font-size: 12pt;
+  border-collapse: collapse;
+}
+table thead th,
+table tfoot th {
+  color: #777;
+  background: rgba(0,0,0,.1);
+}
+table caption {
+  padding:.5em;
+}
+table th,
+table td {
+  padding: .5em;
+  border: 1px solid lightgrey;
+}
