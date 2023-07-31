@@ -1324,29 +1324,6 @@ INSERT INTO `listing_models` (`id`, `model_name`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_07_17_164222_create_phone_models_table', 1),
-(6, '2023_07_17_164333_create_listings_table', 1),
-(7, '2023_07_21_203946_create_model_stats_table', 2),
-(8, '2023_07_23_191206_add_active_column_to_listings_table', 3),
-(9, '2023_07_23_192301_create_price_histories_table', 3),
-(10, '2023_07_25_162333_create_categories_table', 4),
-(11, '2023_07_25_162807_rename_phone_models_table', 4),
-(12, '2023_07_25_164000_modify_listings_table', 4),
-(13, '2023_07_26_163319_add_site_column_to_listings_table', 4),
-(14, '2023_07_27_162326_create_blacklists_table', 5),
-(15, '2023_07_28_164118_add_category_to_listing_models_table', 6);
-
--- --------------------------------------------------------
-
---
 -- Dumping data for table `model_stats`
 --
 
@@ -1671,12 +1648,6 @@ ALTER TABLE `listing_models`
   ADD KEY `listing_models_category_id_foreign` (`category_id`);
 
 --
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `model_stats`
 --
 ALTER TABLE `model_stats`
@@ -1744,12 +1715,6 @@ ALTER TABLE `listings`
 --
 ALTER TABLE `listing_models`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `model_stats`
