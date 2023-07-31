@@ -42,7 +42,8 @@
                 <option value="0">All Listings</option>
             </select>
             <select name="models" id="models"></select>
-            <div class="filter-btn" id="best-profit">Potential profit</div>
+            <button class="filter-btn" id="best-profit">Potential profit</button>
+            <button class="avg-prices" id="avg-prices">Average Prices</button>
         </section>
 
         <!-- <section class="stats">

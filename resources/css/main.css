@@ -103,18 +103,7 @@ select:hover {
   cursor: pointer;
 }
 
-.filter-btn {
-  background-color: #26408c;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 0 8px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-}
-
-.filter-btn:hover {
+.filters button:hover {
   cursor: pointer;
 }
 

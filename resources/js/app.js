@@ -122,20 +122,10 @@ class App {
             }
         }
 
-        if(e.target.id === 'statistics') {
-            e.preventDefault();
 
-            const modelsData = this.state.models.map((item) => {
-                const obj = {
-                    model: item.model_name,
-                    avgPrice: item.model_stats.average_price
-                };
-                return obj;
-            });
-
+        if(e.target.id === 'avg-prices') {
             const modal = statsModal();
             openModal(modal);
-            new ModelPrices(modelsData);
         }
     }
 
