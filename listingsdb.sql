@@ -24,16 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blacklists`
---
-
-CREATE TABLE `blacklists` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `site` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Dumping data for table `blacklists`
 --
 
@@ -299,15 +289,6 @@ INSERT INTO `blacklists` (`id`, `url`, `site`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
---
-
-CREATE TABLE `categories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Dumping data for table `categories`
 --
 
@@ -316,37 +297,6 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 (2, 'Game Console');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `failed_jobs`
---
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `listings`
---
-
-CREATE TABLE `listings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `price` double NOT NULL,
-  `added` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT 1,
-  `site` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `listings`
@@ -1329,16 +1279,6 @@ INSERT INTO `listings` (`id`, `model_id`, `category_id`, `price`, `added`, `url`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `listing_models`
---
-
-CREATE TABLE `listing_models` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `model_name` varchar(255) NOT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Dumping data for table `listing_models`
 --
 
@@ -1384,16 +1324,6 @@ INSERT INTO `listing_models` (`id`, `model_name`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Dumping data for table `migrations`
 --
 
@@ -1415,18 +1345,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2023_07_28_164118_add_category_to_listing_models_table', 6);
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `model_stats`
---
-
-CREATE TABLE `model_stats` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL,
-  `count` int(11) NOT NULL,
-  `average_price` decimal(8,2) NOT NULL,
-  `lowest_price` decimal(8,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `model_stats`
@@ -1464,34 +1382,7 @@ INSERT INTO `model_stats` (`id`, `model_id`, `count`, `average_price`, `lowest_p
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `password_reset_tokens`
---
-
-CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 -- --------------------------------------------------------
-
---
--- Table structure for table `personal_access_tokens`
---
-
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `expires_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -1501,18 +1392,6 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (3, 'App\\Models\\User', 2, 'apiToken', '72f9ad47b07ee232b4401b549caa1046b9c857003579288a27d473d5108a6021', '[\"*\"]', '2023-07-30 18:32:03', NULL, '2023-07-27 19:31:48', '2023-07-30 18:32:03');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `price_histories`
---
-
-CREATE TABLE `price_histories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `listing_id` bigint(20) UNSIGNED NOT NULL,
-  `old_price` double NOT NULL,
-  `new_price` double NOT NULL,
-  `change_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `price_histories`
@@ -1743,21 +1622,6 @@ INSERT INTO `price_histories` (`id`, `listing_id`, `old_price`, `new_price`, `ch
 (234, 973, 140, 120, '2023-07-29 20:04:15');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
