@@ -21,7 +21,13 @@
                 <li>
                     <a href="{{ route('inventory') }}">Inventory</a>
                 </li>
+                <li>
+                    <a href="{{ route('logout') }}">Logout</a>
+                </li>
+
+                <div id="statistics">Stats</div>
             </ul>
+
         </nav>
     </header>
     <main>
