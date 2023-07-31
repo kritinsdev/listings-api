@@ -21,14 +21,14 @@
                 <li>
                     <a href="{{ route('inventory') }}">Inventory</a>
                 </li>
+                <div id="statistics" style="display:flex;align-items:center;color:#fff;font-size:24px;">Stats</div>
                 <li>
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}" style="display:flex; height:100%;">
                         @csrf
                         <button type="submit">Logout</button>
                     </form>
                 </li>
 
-                <div id="statistics" style="display:flex;align-items:center;color:#fff;font-size:24px;">Stats</div>
             </ul>
 
         </nav>
