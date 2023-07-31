@@ -13,12 +13,12 @@ class ListingModelsIdSeeder extends Seeder
      */
     public function run(): void
     {
-        // DB::table('listing_models')
-        //     ->whereBetween('id', [1, 28])
-        //     ->update(['category_id' => 1]);
+        DB::table('listing_models')
+            ->whereBetween('id', [1, 28])
+            ->update(['category_id' => 1]);
 
-        // DB::table('listing_models')
-        //     ->whereBetween('id', [29, 37])
-        //     ->update(['category_id' => 2]);
+        DB::table('listing_models')
+            ->whereBetween('id', [29, 37])
+            ->update(['category_id' => 2]);
     }
 }

@@ -22,7 +22,10 @@
                     <a href="{{ route('inventory') }}">Inventory</a>
                 </li>
                 <li>
-                    <a href="{{ route('logout') }}">Logout</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
                 </li>
             </ul>
         </nav>
