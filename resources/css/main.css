@@ -84,6 +84,11 @@ section {
   gap: 16px;
 }
 
+.filters > * {
+  width: calc(50% - 8px);
+  height: 30px;
+}
+
 
 select {
   font-size: 18px;
