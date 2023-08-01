@@ -91,7 +91,7 @@ export const createListingItem = (item) => {
     listingElement.appendChild(itemAdded);
     listingElement.appendChild(itemPrice);
 
-    if((item.average_model_price - item.price) >= 100) {
+    if((item.average_model_price - item.price) >= 70) {
         listingElement.classList.add('good');
         listingElement.appendChild(profitElement);
     }
