@@ -68,7 +68,7 @@ class App {
         const models = [...this.state.models].reverse();
         const defaultOption = document.createElement('option');
         defaultOption.value = '';
-        defaultOption.textContent = 'Select option';
+        defaultOption.textContent = 'Select model';
         this.modelsOptions.appendChild(defaultOption);
 
         for (let i = 0; i < models.length; i++) {

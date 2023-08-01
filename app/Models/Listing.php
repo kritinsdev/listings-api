@@ -40,4 +40,8 @@ class Listing extends Model
         return $this->hasMany(PriceHistory::class);
     }
 
+    public function listingDetail()
+    {
+        return $this->hasOne(ListingDetail::class);
+    }
 }

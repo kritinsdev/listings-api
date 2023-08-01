@@ -13,14 +13,24 @@ class ListingsController extends Controller
 {
     public function index(Request $request)
     {
+        // $id = $request->query('id');
         $url = $request->query('url');
+        $site = $request->query('site');
         $model_id = $request->query('model_id');
         $category = $request->query('category_id');
 
         $query = Listing::with('listingModel')->where('active', 1)->where('model_id', '!=', 24)->orderBy('added', 'desc');
 
+        // if($id) {
+        //     $query->where('id', $id);
+        // }
+
         if ($url) {
             $query->where('url', $url);
+        }
+
+        if($site) {
+            $query->where('site', $site);
         }
 
         if ($model_id) {

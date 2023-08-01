@@ -19,9 +19,6 @@
                     <a href="{{ route('home') }}">Listings</a>
                 </li>
                 <li>
-                    <a href="{{ route('statistics') }}">Statistics</a>
-                </li>
-                <li>
                     <a href="{{ route('inventory') }}">Inventory</a>
                 </li>
             </ul>

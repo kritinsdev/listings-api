@@ -20,9 +20,6 @@
                     <a href="{{ route('home') }}">Listings</a>
                 </li>
                 <li>
-                    <a href="{{ route('statistics') }}">Statistics</a>
-                </li>
-                <li>
                     <a href="{{ route('inventory') }}">Inventory</a>
                 </li>
             </ul>
@@ -36,12 +33,18 @@
     </header>
     <main>
         <section class="filters">
+            <select name="site" id="site">
+                <option value>All Sites</option>
+                <option value="andelemandele">Andelemandele.lv</option>
+                <option value="ss">SS.LV</option>
+            </select>
             <select name="category" id="category">
+                <option value="0">All Listings</option>
                 <option value="1">Phones</option>
                 <option value="2">Game Consoles</option>
-                <option value="0">All Listings</option>
             </select>
             <select name="models" id="models"></select>
+            
             <button class="filter-btn" id="best-profit">Potential profit</button>
             <button class="avg-prices" id="avg-prices">Average Prices</button>
         </section>

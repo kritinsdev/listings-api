@@ -48,8 +48,13 @@ export const createListingItem = (item) => {
     itemModel.classList.add('model');
     itemModel.textContent = `${item.model}`;
 
-    const itemDetails = document.createElement('div');
-    itemDetails.classList.add('details');
+    const itemAdded = document.createElement('div');
+    itemAdded.classList.add('detail');
+    itemAdded.textContent = `Added: ${relativeTime(item.added)}`;
+
+    const site = document.createElement('p');
+    site.classList.add('detail');
+    site.textContent = `Site: ${item.site}`;
 
     const optionsButtonsContainer = document.createElement('div');
     optionsButtonsContainer.classList.add('option-buttons');
@@ -71,23 +76,10 @@ export const createListingItem = (item) => {
     item.site === 'andelemandele' ? optionsButtonsContainer.appendChild(reserve) : 0;
     optionsButtonsContainer.appendChild(deleteListing);
 
-
-
-    // TODO
-    // priceHistories.classList.add('price-history');
-    // item.price_history.forEach((el) => {
-    //     const historyItem = document.createElement('p');
-    //     historyItem.textContent = `Old Price: ${el.old_price}, New Price: ${el.new_price}, Change fixed: ${el.change_date}`;
-    //     priceHistories.appendChild(historyItem);
-    // });
-
-    const itemAdded = document.createElement('p');
-    itemAdded.classList.add('added');
-    itemAdded.textContent = `Added: ${relativeTime(item.added)}`;
-
     listingElement.appendChild(optionsButtonsContainer);
     listingElement.appendChild(itemModel);
-    listingElement.appendChild(itemDetails);
+    listingElement.appendChild(site);
+    listingElement.appendChild(itemAdded);
     listingElement.appendChild(itemAdded);
     listingElement.appendChild(itemPrice);
 
