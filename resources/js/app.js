@@ -56,10 +56,10 @@ class App {
                     this.listingsContainer.appendChild(itemElement);
                 }
                 
-                this.createResetButton(this.filtersContainer);
             } else {
                 this.listingsContainer.innerHTML = '<p>No results found</p>';
             }
+            this.createResetButton(this.filtersContainer);
             this.listingsContainer.classList.remove('processing');
         }
     }

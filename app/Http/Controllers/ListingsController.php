@@ -17,7 +17,7 @@ class ListingsController extends Controller
         $model_id = $request->query('model_id');
         $category = $request->query('category_id');
 
-        $query = Listing::with('listingModel')->where('active', 1)->orderBy('added', 'desc');
+        $query = Listing::with('listingModel')->where('active', 1)->where('model_id', '!=', 24)->orderBy('added', 'desc');
 
         if ($url) {
             $query->where('url', $url);
@@ -70,8 +70,10 @@ class ListingsController extends Controller
 
         $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
 
-        if (($modelStat->average_price - $listing->price) >= 70) {
-            Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
+        if($listing->model_id != 24) {
+            if (($modelStat->average_price - $listing->price) >= 70) {
+                Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
+            }
         }
 
         return response()->json($listing, 201);
