@@ -57,6 +57,9 @@
                     </div>
                     <div class="cell">
                         Profit
+                    </div>                    
+                    <div class="cell">
+                        IMEI
                     </div>
                 </div>
 
@@ -82,6 +85,9 @@
                     <div class="cell" data-title="Profit">
                         -
                     </div>
+                    <div class="cell" data-title="IMEI">
+                        352990117419131
+                    </div>
                 </div>
 
                 <div class="row">
@@ -104,6 +110,9 @@
                         -
                     </div>
                     <div class="cell" data-title="Profit">
+                        -
+                    </div>
+                    <div class="cell" data-title="IMEI">
                         -
                     </div>
                 </div>
@@ -130,9 +139,20 @@
                     <div class="cell" data-title="Profit">
                         -
                     </div>
+                    <div class="cell" data-title="IMEI">
+                        -
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="table-wrap">
+            <div class="summary">
+                <div>Total spent: 580€</div>
+                <div>Total profit: -</div>
+            </div>
+        </div>
+        
 </body>
 
 </html>

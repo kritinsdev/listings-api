@@ -99,15 +99,38 @@ export const createListingItem = (item) => {
     return listingElement;
 }
 
+export const createModelDataItem = (item) => {
+
+}
+
 export const statsModal = (data) => {
     const modal = document.createElement('div');
     modal.classList.add('modal');
     modal.setAttribute('id', 'modal');
 
-    // data.forEach((item) => {
-    //     document.createElement('div');
-    // });
+    const modalDataWrap = document.createElement('div');
+    modalDataWrap.classList.add('modal-data-wrap', 'models-list');
+    
+    data.forEach((item) => {
+        console.log(item);
+        const box = document.createElement('div');
+        box.classList.add('models-list-box');
 
+        const model = document.createElement('div');
+        model.classList.add('models-list-title');
+        model.innerHTML = `${item.model_name} <span>(${item.model_stats.count})</span>`;
+
+        const avgPrice = document.createElement('div');
+        avgPrice.classList.add('models-list-price');
+        avgPrice.textContent = `${Math.round(item.model_stats.average_price)}€`;
+
+        box.appendChild(model);
+        box.appendChild(avgPrice);
+
+        modalDataWrap.appendChild(box);
+    });
+
+    modal.appendChild(modalDataWrap);
     document.body.appendChild(modal);
     return modal;
 }
@@ -115,10 +138,12 @@ export const statsModal = (data) => {
 export const openModal = (modal) => {
     const backdrop = document.createElement('div');
     backdrop.classList.add('backdrop');
+    document.body.style.overflow = 'hidden';
     document.body.appendChild(backdrop);
-
+    
     backdrop.addEventListener('click', function () {
         document.body.removeChild(modal);
         document.body.removeChild(backdrop);
+        document.body.style.overflow = 'initial';
     });
 } 

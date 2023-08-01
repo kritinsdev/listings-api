@@ -393,13 +393,21 @@ header nav ul li div {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70vw;
+  width: 80vw;
   height: 80vh;
   background: white;
   z-index: 1001;
   padding: 10px;
   border-radius: 10px;
 }
+
+@media screen and (min-width: 640px) {
+  .modal {
+    height:initial;
+  }
+}
+
+
 
 #canvas {
   width: 100% !important;
@@ -510,3 +518,47 @@ table td {
   padding: .5em;
   border: 1px solid lightgrey;
 }
+
+/* ======================= MODEL STATS MODAL ======================= */
+.models-list {
+  display: grid;
+  grid-template-columns: auto;
+  overflow-y:auto;
+  gap:12px;
+  height: 100%;
+}
+
+@media only screen and (min-width: 640px) {
+  .models-list {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.models-list::-webkit-scrollbar {
+  display: none;
+}
+
+.models-list-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  padding:8px;
+  background-color: #e9e9e9;
+}
+
+.models-list-title {
+  font-size: 18px;
+}
+
+.models-list-title span {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.models-list-price {
+  font-weight: bold;
+  font-size: 24px;
+  color:rgba(38, 64, 140, 0.93);
+}
+/* ======================= MODEL STATS MODAL ======================= */

@@ -1,7 +1,6 @@
 import './inc/bootstrap';
 import { createListingItem, openModal, statsModal } from './inc/helpers.js';
 import { getListings, getModels, getModel, deleteListing } from './inc/data.js';
-import ModelPrices from './inc/ModelPrices.js';
 
 class App {
     constructor() {
@@ -124,7 +123,7 @@ class App {
 
 
         if(e.target.id === 'avg-prices') {
-            const modal = statsModal();
+            const modal = statsModal(this.state.models);
             openModal(modal);
         }
     }
