@@ -162,12 +162,46 @@ select:hover {
   font-weight: bold;
   text-align: center;
   font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:12px 0;
+}
+
+.listing .model-name {
+  
+}
+
+.site {
+  position: absolute;
+  top:-12px;
+  left:-6px;
 }
 
 .listing .detail {
-  font-weight: 300;
-  font-size: 14px;
-  text-align: left;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: right;
+}
+
+.detail-ss {
+  background-color: #33aa4c;
+  font-weight: bold;
+  display: inline-flex;
+  padding:0 8px;
+  border-radius: 4px;
+  color:#fff;
+  text-transform: uppercase;
+}
+
+.detail-andelemandele {
+  background-color: #282828;
+  font-weight: bold;
+  display: inline-flex;
+  color:#fff;
+  padding:0 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
 }
 
 .listing .price-history {
@@ -231,18 +265,28 @@ select:hover {
 }
 
 .listing .profit {
-  position: absolute;
-  top: -17px;
-  left: -6px;
-  background-color: #1b892eed;
   color: #fff;
-  font-size: 14px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
+  font-size: 18px;
   font-weight: bold;
-  display: grid;
-  place-items: center;
+  padding:4px 8px;
+  border-radius: 4px;
+}
+
+.profit.grey {
+  background-color: #777;
+}
+
+.profit.light-green {
+  background-color: rgb(193 255 191);
+  color: black;
+}
+
+.profit.dark-green {
+  background-color: #299840;
+}
+
+.profit.red {
+  background-color: #D0342C ;
 }
 
 header {
@@ -588,17 +632,16 @@ table td {
 }
 
 .models-list-title {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .models-list-title span {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
 }
 
 .models-list-price {
   font-weight: bold;
-  font-size: 24px;
-  color:rgba(38, 64, 140, 0.93);
+  font-size: 32px;
 }
 /* ======================= MODEL STATS MODAL ======================= */

@@ -25,6 +25,25 @@ const relativeTime = (dateString) => {
     }
 }
 
+const profitColorMap = (sum) => {
+
+    if(sum >= 0 && sum <= 50) {
+        return 'grey';
+    }
+
+    if(sum > 50 && sum <= 100) {
+        return 'light-green';
+    }
+
+    if(sum > 100 && sum <= 150) {
+        return 'dark-green';
+    }
+
+    if(sum > 150) {
+        return 'red';
+    }
+}
+
 export const createListingItem = (item) => {
     const listingElement = document.createElement('div');
     listingElement.classList.add('listing');
@@ -40,21 +59,31 @@ export const createListingItem = (item) => {
         ${item.price}€${(item.old_price) ? `<span class="old-price">${item.old_price}€</span>` : ""}
         ${(item.old_price) ? `${(item.old_price > item.price) ? '<span class="price-direction down">&#8595;</span>' :'<span class="price-direction up">&#8593;</span>'}` : ''}`;
 
-    const profitElement = document.createElement('div');
-    profitElement.classList.add('profit');
-    profitElement.textContent = `+${item.average_model_price - item.price}€`;
+
+    const profitElement = document.createElement('span');
+    profitElement.classList.add('profit', profitColorMap(item.average_model_price - item.price));
+    profitElement.textContent = `${item.average_model_price - item.price > 0 ? `+${item.average_model_price - item.price}` : `${item.average_model_price - item.price}`}€`;
 
     const itemModel = document.createElement('div');
     itemModel.classList.add('model');
-    itemModel.textContent = `${item.model}`;
+
+    const modelName = document.createElement('div');
+    modelName.classList.add('model-name');
+
+    modelName.textContent = `${item.model}`;
+    itemModel.appendChild(modelName);
+
+    if(item.average_model_price - item.price > 0) {
+        itemModel.appendChild(profitElement)
+    }
 
     const itemAdded = document.createElement('div');
     itemAdded.classList.add('detail');
-    itemAdded.textContent = `Added: ${relativeTime(item.added)}`;
+    itemAdded.textContent = `${relativeTime(item.added)}`;
 
     const site = document.createElement('p');
-    site.classList.add('detail');
-    site.textContent = `Site: ${item.site}`;
+    site.classList.add('site', `detail-${item.site}`);
+    site.textContent = `${item.site}.LV`;
 
     const optionsButtonsContainer = document.createElement('div');
     optionsButtonsContainer.classList.add('option-buttons');
@@ -81,19 +110,17 @@ export const createListingItem = (item) => {
 `;
 
     optionsButtonsContainer.appendChild(listingInfo);
-    item.site === 'andelemandele' ? optionsButtonsContainer.appendChild(reserve) : false;
+    // item.site === 'andelemandele' ? optionsButtonsContainer.appendChild(reserve) : false;
     optionsButtonsContainer.appendChild(deleteListing);
 
     listingElement.appendChild(optionsButtonsContainer);
     listingElement.appendChild(itemModel);
     listingElement.appendChild(site);
     listingElement.appendChild(itemAdded);
-    listingElement.appendChild(itemAdded);
     listingElement.appendChild(itemPrice);
 
     if((item.average_model_price - item.price) >= 70) {
         listingElement.classList.add('good');
-        listingElement.appendChild(profitElement);
     }
 
     return listingElement;
