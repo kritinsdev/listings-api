@@ -112,7 +112,6 @@ export const statsModal = (data) => {
     modalDataWrap.classList.add('modal-data-wrap', 'models-list');
     
     data.forEach((item) => {
-        console.log(item);
         const box = document.createElement('div');
         box.classList.add('models-list-box');
 
@@ -136,17 +135,43 @@ export const statsModal = (data) => {
 }
 
 export const listingInfoModal = (data) => {
-    // console.log(data);  
+    console.log(data);
+    const modal = `<div class="modal listing" id="modal">
+    <div class="modal-data-wrap listing-info-modal">
+        <div class="main-title">${data.model} / ${data.price}€</div>
+        <p>Title: ${data.full_title ? data.full_title : '-'}</p>    
+        <p>Description: ${data.description ? data.description : '-'}</p>    
+        <p>Current views: ${data.views ? data.views : '-'}</p>    
+        <p>Location: ${data.location ? data.location : '-'}</p>
+        <p>Site: ${data.site}.lv</p>
+        <div class="listing-link">
+            <a href="${data.url}">Link to listing</a>    
+        </div>
+    </div>
+    </div>`
+
+    document.body.insertAdjacentHTML('beforeend', modal);
+    return modal;
 }
 
 export const openModal = (modal) => {
+    let modalHTML = false;
+
+    if(modal.nodeName === undefined) {
+        let temporary = document.createElement('div');
+        modalHTML = true;
+        temporary.innerHTML = modal;
+        modal = temporary.firstChild;
+    }
+
     const backdrop = document.createElement('div');
     backdrop.classList.add('backdrop');
     document.body.style.overflow = 'hidden';
     document.body.appendChild(backdrop);
     
     backdrop.addEventListener('click', function () {
-        document.body.removeChild(modal);
+        console.log(modal);
+        modalHTML ? document.querySelector('#modal').remove() : document.body.removeChild(modal);
         document.body.removeChild(backdrop);
         document.body.style.overflow = 'initial';
     });

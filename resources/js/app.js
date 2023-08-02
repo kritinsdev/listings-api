@@ -1,5 +1,5 @@
 import './inc/bootstrap';
-import { createListingItem, openModal, statsModal } from './inc/helpers.js';
+import { createListingItem, openModal, statsModal, listingInfoModal } from './inc/helpers.js';
 import { getListings, getModels, getModel, deleteListing } from './inc/data.js';
 
 class App {
@@ -124,13 +124,14 @@ class App {
 
 
         if(e.target.id === 'listing-details') {
-            const listingId = e.target.closest('.listing').dataset.listingId;
+            const listingId = parseInt(e.target.closest('.listing').dataset.listingId);
             const listings = this.state.listings.data;
+            this.state.currentListingData = listings.find(obj => obj.id === listingId);
 
-            const listing = listings.find(obj => obj.id === listingId);
-            console.log(listings);
-            // const modal = statsModal(this.state.models);
-            // openModal(modal);
+            if(this.state.currentListingData) {
+                const modal = listingInfoModal(this.state.currentListingData);
+                openModal(modal);
+            }
         }
 
 

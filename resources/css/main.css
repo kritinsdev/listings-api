@@ -279,18 +279,12 @@ header nav ul li div {
   top: 4px;
   right: 4px;
   display: flex;
-  gap: 8px;
-}
-
-.option-buttons>div {
-  background-color: #eee;
-  padding: 4px;
-  border-radius: 4px;
+  gap: 12px;
 }
 
 .option-buttons svg {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
 }
 
@@ -411,13 +405,49 @@ header nav ul li div {
   border-radius: 10px;
 }
 
+.modal.listing {
+  width: 90%;
+  height: initial;
+}
+
 @media screen and (min-width: 640px) {
   .modal {
     height:initial;
   }
+
+  .modal.listing {
+    width: initial;
+  }
 }
 
+.listing-info-modal {
+  font-size: 18px;
+}
 
+.listing-info-modal p {
+  border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 8px;
+}
+
+.listing-info-modal .main-title {
+  font-weight: bold;
+  font-size: 32px;
+  text-align: center;
+}
+
+.listing-info-modal .listing-link {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.listing-info-modal a {
+  padding:8px 16px;
+  border-radius: 10px;
+  background-color: #26408ced;
+  color:#fff;
+  text-decoration: none;
+}
 
 #canvas {
   width: 100% !important;
