@@ -10,6 +10,7 @@ class App {
             models:[],
             selectedModel: null,
             listingsCategory: 1,
+            currentListingData: null
         },
 
         this.pageBody = document.querySelector('body');
@@ -119,6 +120,17 @@ class App {
                     listing.remove();
                 }, 1000)
             }
+        }
+
+
+        if(e.target.id === 'listing-details') {
+            const listingId = e.target.closest('.listing').dataset.listingId;
+            const listings = this.state.listings.data;
+
+            const listing = listings.find(obj => obj.id === listingId);
+            console.log(listings);
+            // const modal = statsModal(this.state.models);
+            // openModal(modal);
         }
 
 

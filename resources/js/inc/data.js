@@ -13,7 +13,7 @@ async function fetchApi(endpoint, queryParams = {}, method = "GET", body = null)
     }
 
     let url = `${apiUrl}/${endpoint}`;
-  
+
     const options = {
         method: method,
         url: url,
@@ -24,7 +24,7 @@ async function fetchApi(endpoint, queryParams = {}, method = "GET", body = null)
         },
         data: body,
     };
-
+    
     try {
         const response = await axios(options);
         return response.data;
