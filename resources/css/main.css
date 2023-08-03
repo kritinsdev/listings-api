@@ -624,6 +624,7 @@ table td {
 
 .models-list-box {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-radius: 4px;
@@ -632,11 +633,11 @@ table td {
 }
 
 .models-list-title {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .models-list-title span {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 300;
 }
 

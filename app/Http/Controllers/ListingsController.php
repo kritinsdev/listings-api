@@ -85,7 +85,7 @@ class ListingsController extends Controller
 
         if($listing->model_id != 24) {
             if (($modelStat->average_price - $listing->price) >= 70) {
-                // Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
+                Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
             }
         }
 
