@@ -162,7 +162,6 @@ export const statsModal = (data) => {
 }
 
 export const listingInfoModal = (data) => {
-    console.log(data);
     const modal = `<div class="modal listing" id="modal">
     <div class="modal-data-wrap listing-info-modal">
         <div class="main-title">${data.model} / ${data.price}€</div>
@@ -197,7 +196,6 @@ export const openModal = (modal) => {
     document.body.appendChild(backdrop);
     
     backdrop.addEventListener('click', function () {
-        console.log(modal);
         modalHTML ? document.querySelector('#modal').remove() : document.body.removeChild(modal);
         document.body.removeChild(backdrop);
         document.body.style.overflow = 'initial';

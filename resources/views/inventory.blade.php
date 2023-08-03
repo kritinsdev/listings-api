@@ -47,14 +47,14 @@
                         Date Bought
                     </div>
                     <div class="cell">
-                        Date Sold
-                    </div>
-                    <div class="cell">
                         Sold For
                     </div>
                     <div class="cell">
+                        Date Sold
+                    </div>
+                    <div class="cell">
                         Profit
-                    </div>                    
+                    </div>
                     <div class="cell">
                         IMEI
                     </div>
@@ -74,13 +74,13 @@
                         24/07/2023
                     </div>
                     <div class="cell" data-title="Sold For">
-                        -
+                        200€
                     </div>
                     <div class="cell" data-title="Date Sold">
-                        -
+                        01/08/2023
                     </div>
                     <div class="cell" data-title="Profit">
-                        -
+                        50€
                     </div>
                     <div class="cell" data-title="IMEI">
                         352990117419131
@@ -101,16 +101,16 @@
                         27/07/2023
                     </div>
                     <div class="cell" data-title="Sold For">
-                        -
+                        270€
                     </div>
                     <div class="cell" data-title="Date Sold">
-                        -
+                        03/08/2023
                     </div>
                     <div class="cell" data-title="Profit">
-                        -
+                        90€
                     </div>
                     <div class="cell" data-title="IMEI">
-                        -
+                        356578109856117
                     </div>
                 </div>
 
@@ -146,10 +146,11 @@
         <div class="table-wrap">
             <div class="summary">
                 <div>Total spent: 580€</div>
-                <div>Total profit: -</div>
+                <div>Total sold: 200€</div>
+                <div>Total profit: 50€</div>
             </div>
         </div>
-        
+
 </body>
 
 </html>
