@@ -30,7 +30,7 @@ class App {
 
     initApp = async () => {
         this.state.listings = await getListings();
-        this.state.models = await getModels();
+        this.state.models = await getModels(this.state.listingsCategory);
 
         this.createModelOptions();
 
