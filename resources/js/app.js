@@ -10,7 +10,8 @@ class App {
             models:[],
             selectedModel: null,
             listingsCategory: 1,
-            currentListingData: null
+            currentListingData: null,
+            filters: {}
         },
 
         this.pageBody = document.querySelector('body');

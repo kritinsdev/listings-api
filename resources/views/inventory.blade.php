@@ -35,9 +35,6 @@
             <div class="table">
                 <div class="row header">
                     <div class="cell">
-                        Listing ID
-                    </div>
-                    <div class="cell">
                         Model
                     </div>
                     <div class="cell">
@@ -61,9 +58,6 @@
                 </div>
 
                 <div class="row">
-                    <div class="cell" data-title="Listing id">
-                        1
-                    </div>
                     <div class="cell" data-title="Product">
                         iPhone 11
                     </div>
@@ -88,9 +82,6 @@
                 </div>
 
                 <div class="row">
-                    <div class="cell" data-title="Listing id">
-                        1
-                    </div>
                     <div class="cell" data-title="Product">
                         iPhone 11
                     </div>
@@ -115,9 +106,6 @@
                 </div>
 
                 <div class="row">
-                    <div class="cell" data-title="Listing id">
-                        1
-                    </div>
                     <div class="cell" data-title="Product">
                         iPhone 12
                     </div>
@@ -146,8 +134,8 @@
         <div class="table-wrap">
             <div class="summary">
                 <div>Total spent: 580€</div>
-                <div>Total sold: 200€</div>
-                <div>Total profit: 50€</div>
+                <div>Total sold: 470€</div>
+                <div>Total profit: 140€</div>
             </div>
         </div>
 

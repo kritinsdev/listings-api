@@ -646,3 +646,9 @@ table td {
   font-size: 32px;
 }
 /* ======================= MODEL STATS MODAL ======================= */
+
+.summary {
+  display: flex;
+  gap:16px;
+  font-size: 24px;
+}

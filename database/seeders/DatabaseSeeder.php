@@ -14,9 +14,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CategoriesSeeder::class);
         $this->call(ListingModelsTableSeeder::class);
-        $this->call(ListingsSeeder::class);
-        $this->call(ModelStatsSeeder::class);
-        $this->call(PriceHistories::class);
-        $this->call(BlacklistSeeder::class);
+        $this->call(UserSeeder::class);
+        // $this->call(ListingsSeeder::class);
+        // $this->call(ModelStatsSeeder::class);
+        // $this->call(PriceHistories::class);
+        // $this->call(BlacklistSeeder::class);
     }
 }
