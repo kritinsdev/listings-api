@@ -124,6 +124,20 @@ select:hover {
   cursor: pointer;
 }
 
+.filters [data-filter="profit"] {
+  display: flex;
+  align-items: center;
+  background-color: #26408c;
+  color:#fff;
+  border-radius: 10px;
+  padding:0 8px;
+}
+
+.filters [data-filter="profit"]:hover {
+  background-color: #375ac2;
+  cursor: pointer;
+}
+
 .listings {
   display: grid;
   grid-template-columns: auto;
@@ -344,6 +358,7 @@ header nav ul li div {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 101;
 }
 
 .loader-content {
@@ -637,8 +652,18 @@ table td {
 }
 
 .models-list-title span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   font-size: 12px;
-  font-weight: 300;
+  font-weight: bold;
+  position: relative;
+  top:-10px;
+  width: 18px;
+  height: 18px;
+  background-color: #26408c;
+  color:#fff;
+  border-radius: 50%;
 }
 
 .models-list-price {
@@ -651,4 +676,24 @@ table td {
   display: flex;
   gap:16px;
   font-size: 24px;
+}
+
+.avg-prices {
+  width: 40px;
+  height: 40px;
+  background-color: #26408c;
+  color:#fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  z-index: 100;
+}
+
+.avg-prices svg {
+  width: 30px;
+  height: 30px;
+}
+
+.avg-prices:hover {
+  cursor: pointer;
 }

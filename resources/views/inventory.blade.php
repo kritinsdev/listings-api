@@ -128,12 +128,36 @@
                         -
                     </div>
                 </div>
+
+                                <div class="row">
+                    <div class="cell" data-title="Product">
+                        iPhone 11
+                    </div>
+                    <div class="cell" data-title="Bought For">
+                        140€
+                    </div>
+                    <div class="cell" data-title="Date Bought">
+                        04/08/2023
+                    </div>
+                    <div class="cell" data-title="Sold For">
+                        -
+                    </div>
+                    <div class="cell" data-title="Date Sold">
+                        -
+                    </div>
+                    <div class="cell" data-title="Profit">
+                        -
+                    </div>
+                    <div class="cell" data-title="IMEI">
+                        -
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="table-wrap">
             <div class="summary">
-                <div>Total spent: 580€</div>
+                <div>Total spent: 720€</div>
                 <div>Total sold: 470€</div>
                 <div>Total profit: 140€</div>
             </div>

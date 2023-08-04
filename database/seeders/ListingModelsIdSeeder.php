@@ -16,9 +16,5 @@ class ListingModelsIdSeeder extends Seeder
         DB::table('listing_models')
             ->whereBetween('id', [1, 28])
             ->update(['category_id' => 1]);
-
-        DB::table('listing_models')
-            ->whereBetween('id', [29, 37])
-            ->update(['category_id' => 2]);
     }
 }

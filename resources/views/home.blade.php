@@ -33,28 +33,26 @@
     </header>
     <main>
         <section class="filters">
+            <div class="avg-prices" id="avg-prices">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
             <select name="site" id="site">
                 <option value>All Sites</option>
                 <option value="andelemandele">Andelemandele.lv</option>
                 <option value="ss">SS.LV</option>
             </select>
-            <select name="category" id="category">
+            {{-- <select name="category" id="category">
                 <option value="0">All Listings</option>
                 <option value="1">Phones</option>
                 <option value="2">Game Consoles</option>
-            </select>
+            </select> --}}
             <select name="models" id="models"></select>
             
-            <button class="filter-btn" id="best-profit">Potential profit</button>
-            <button class="avg-prices" id="avg-prices">Average Prices</button>
+            <div data-filter="profit" data-direction="asc">Potential profit <span data-direction-arrow></span></div>
         </section>
-
-        <!-- <section class="stats">
-            <div id="current-model">Current model: <span>Not Selected</span></div>
-            <div id="current-model-avg-price"></div>
-            <div id="current-model-lowest-price"></div>
-        </section> -->
-
+        
         <section class="listings"></section>
     </main>
 

@@ -70,7 +70,7 @@ export const createListingItem = (item) => {
     const modelName = document.createElement('div');
     modelName.classList.add('model-name');
 
-    modelName.textContent = `${item.model}`;
+    modelName.textContent = `${item.model} ${item.memory ? `(${item.memory}GB)` : ''}`;
     itemModel.appendChild(modelName);
 
     if(item.average_model_price - item.price > 0) {
@@ -119,8 +119,8 @@ export const createListingItem = (item) => {
     listingElement.appendChild(itemAdded);
     listingElement.appendChild(itemPrice);
 
-    if((item.average_model_price - item.price) >= 70) {
-        listingElement.classList.add('good');
+    if((item.average_model_price - item.price) >= 50) {
+        listingElement.classList.add('profitBadge');
     }
 
     return listingElement;
@@ -144,11 +144,11 @@ export const statsModal = (data) => {
 
         const model = document.createElement('div');
         model.classList.add('models-list-title');
-        model.innerHTML = `${item.model_name} <span>(${item.model_stats.count})</span>`;
+        model.innerHTML = `${item.model_name} ${item.model_stats?.count ? `<span>${item.model_stats.count}</span>` : '<span>0</span>'}`;
 
         const avgPrice = document.createElement('div');
         avgPrice.classList.add('models-list-price');
-        avgPrice.textContent = `${Math.round(item.model_stats.average_price)}€`;
+        avgPrice.textContent = `${item.model_stats?.average_price ? `${Math.round(item.model_stats?.average_price)}€` : '-'}`;
 
         box.appendChild(model);
         box.appendChild(avgPrice);

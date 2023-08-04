@@ -5,13 +5,14 @@ import { getListings, getModels, getModel, deleteListing } from './inc/data.js';
 class App {
     constructor() {
         this.state = {
-            category: 'phone',
             listings: [],
             models:[],
             selectedModel: null,
-            listingsCategory: 1,
+            selectedSite: null,
             currentListingData: null,
-            filters: {}
+            filters: {
+                category: 1
+            }
         },
 
         this.pageBody = document.querySelector('body');
@@ -20,6 +21,7 @@ class App {
         this.statsContainer = document.querySelector('.stats');
         this.filtersContainer = document.querySelector('.filters');
         this.modelsOptions = document.querySelector('#models');
+        this.siteOption = document.querySelector('#site');
         this.events();
     }
 
@@ -27,18 +29,15 @@ class App {
         window.onload = this.initApp();
         document.addEventListener('click', this.handleClick);
         this.modelsOptions.addEventListener('change', this.getModelListings);
+        this.siteOption.addEventListener('change', this.getSiteListings);
     }
 
     initApp = async () => {
         this.state.listings = await getListings();
-        this.state.models = await getModels(this.state.listingsCategory);
+        this.state.models = await getModels(this.state.filters.category);
 
         this.createModelOptions();
-
-        for (let i = 0; i < this.state.listings.data.length; i++) {
-            const itemElement = createListingItem(this.state.listings.data[i]);
-            this.listingsContainer.appendChild(itemElement);
-        }
+        this.createListingsGrid();
 
         this.pageLoader.remove();
         this.pageBody.style.overflow = 'initial';
@@ -49,7 +48,7 @@ class App {
         this.listingsContainer.classList.add('processing');
         
         if (this.state.selectedModel) {
-            const modelListings = await getModel(this.state.selectedModel);
+            const modelListings = await getModel(this.state.selectedModel, this.state.selectedSite);
             this.listingsContainer.innerHTML = '';
             
             if (modelListings.data.length > 0) {
@@ -65,6 +64,23 @@ class App {
             this.listingsContainer.classList.remove('processing');
         }
     }
+
+
+    getSiteListings = (e) => {
+        const site = e.target.value;
+
+        let siteListings = this.state.listings.data.filter(item => item.site === site);
+
+        if(!site) {
+            siteListings = this.state.listings.data;
+        }
+
+        this.createListingsGrid(siteListings);
+        
+        this.createResetButton(this.filtersContainer);
+
+    }
+
 
     createModelOptions() {
         const models = [...this.state.models].reverse();
@@ -83,26 +99,31 @@ class App {
 
     handleClick = (e) => {
         if (e.target.id === 'reset') {
-            this.state.selectedModel = null;
             e.target.remove();
 
+            this.state.selectedModel = null;
             this.modelsOptions.value = '';
-            
-            this.listingsContainer.innerHTML = '';
-            for (let i = 0; i < this.state.listings.data.length; i++) {
-                const itemElement = createListingItem(this.state.listings.data[i]);
-                this.listingsContainer.appendChild(itemElement);
-            }
+            this.siteOption.value = '';
+            this.resetProfitFilter();
+            this.createListingsGrid();
         }
 
-        if(e.target.id === 'best-profit') {
-            const listings = document.querySelectorAll('.listing.good');
+        if(e.target.dataset.filter === 'profit') {
+            const filterBtn = e.target;
+            const direction = filterBtn.dataset.direction;
+            const arrow = e.target.querySelector('span');
+            const listings = document.querySelectorAll('.listing.profitBadge');
             const listingsArray = Array.from(listings);
-            listingsArray.sort((a, b) => {
-                const aDiff = parseInt(a.getAttribute('data-potential-profit'));
-                const bDiff = parseInt(b.getAttribute('data-potential-profit'));
-                return bDiff - aDiff;
-            });
+            
+            if(direction == 'asc') {
+                listingsArray.sort((a, b) => parseInt(b.getAttribute('data-potential-profit')) - parseInt(a.getAttribute('data-potential-profit')));
+                filterBtn.setAttribute('data-direction', 'desc');
+                arrow.innerHTML = '&uarr;'
+            } else {
+                listingsArray.sort((a, b) => parseInt(a.getAttribute('data-potential-profit')) - parseInt(b.getAttribute('data-potential-profit')));
+                filterBtn.setAttribute('data-direction', 'asc');
+                arrow.innerHTML = '&darr;'
+            }
         
             this.listingsContainer.innerHTML = '';
             listingsArray.forEach(el => this.listingsContainer.appendChild(el));
@@ -136,7 +157,7 @@ class App {
         }
 
 
-        if(e.target.id === 'avg-prices') {
+        if(e.target.closest('#avg-prices')) {
             const modal = statsModal(this.state.models);
             openModal(modal);
         }
@@ -150,6 +171,23 @@ class App {
             resetBtn.setAttribute('id', 'reset');
             parent.appendChild(resetBtn);
         }
+    }
+
+    createListingsGrid(listings) {
+        let list = this.state.listings.data;
+        if(listings) list = listings;
+
+        this.listingsContainer.innerHTML = '';
+        for (let i = 0; i < list.length; i++) {
+            const itemElement = createListingItem(list[i]);
+            this.listingsContainer.appendChild(itemElement);
+        }
+    }
+
+    resetProfitFilter() {
+        const el = document.querySelector('[data-filter="profit"]');
+        el.setAttribute('data-direction', 'asc');
+        el.querySelector('span').innerHTML = '';
     }
 }
 

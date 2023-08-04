@@ -40,5 +40,5 @@ async function fetchApi(endpoint, queryParams = {}, method = "GET", body = null)
 export const getListings = (id) => fetchApi("listings", id ? { category: id } : {});
 export const deleteListing = (id) => fetchApi(`listings/${id}`, {}, "DELETE");
 export const getModels = (id) => fetchApi("models", id ? { category_id: id } : {});
-export const getModel = (id) => fetchApi("listings", { model_id: id });
+export const getModel = (id, site) => fetchApi("listings", { model_id: id, site: site });
 export const getStats = () => fetchApi("stats");
