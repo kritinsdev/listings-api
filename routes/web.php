@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,9 +24,7 @@ Route::middleware('auth')->group(function () {
         return view('statistics');
     })->name('statistics');
 
-    Route::get('/inventory', function () {
-        return view('inventory');
-    })->name('inventory');
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory');
 });
 
 require __DIR__.'/auth.php';
