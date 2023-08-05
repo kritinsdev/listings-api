@@ -27,7 +27,13 @@ async function fetchApi(endpoint, queryParams = {}, method = "GET", body = null)
     
     try {
         const response = await axios(options);
-        return response.data;
+        let data = null;
+        if(response.data.data) {
+            data = response.data.data;
+        } else {
+            data = response.data
+        }
+        return data;
     } catch (error) {
         if (error.response) {
             throw new Error(`HTTP error! status: ${error.response.status}`);
@@ -37,8 +43,16 @@ async function fetchApi(endpoint, queryParams = {}, method = "GET", body = null)
     }
 }
 
-export const getListings = (id) => fetchApi("listings", id ? { category: id } : {});
+export const fetchListings = ({ id, site, categoryId } = {}) => {
+    const queryParams = {};
+    if (id) queryParams.model_id = id;
+    if (site) queryParams.site = site;
+    if (categoryId) queryParams.category = categoryId;
+
+    return fetchApi("listings", queryParams);
+};
+
+
 export const deleteListing = (id) => fetchApi(`listings/${id}`, {}, "DELETE");
-export const getModels = (id) => fetchApi("models", id ? { category_id: id } : {});
-export const getModel = (id, site) => fetchApi("listings", { model_id: id, site: site });
+export const getModels = (id) => fetchApi("models", id ? {category_id : id} : {});
 export const getStats = () => fetchApi("stats");

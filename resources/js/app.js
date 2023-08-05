@@ -1,6 +1,6 @@
 import './inc/bootstrap';
 import { createListingItem, openModal, statsModal, listingInfoModal } from './inc/helpers.js';
-import { getListings, getModels, getModel, deleteListing } from './inc/data.js';
+import { fetchListings, getModels, deleteListing } from './inc/data.js';
 
 class App {
     constructor() {
@@ -33,7 +33,7 @@ class App {
     }
 
     initApp = async () => {
-        this.state.listings = await getListings();
+        this.state.listings = await fetchListings();
         this.state.models = await getModels(this.state.filters.category);
 
         this.createModelOptions();
@@ -47,13 +47,14 @@ class App {
         this.state.selectedModel = e.target.value;
         this.listingsContainer.classList.add('processing');
         
-        if (this.state.selectedModel) {
-            const modelListings = await getModel(this.state.selectedModel, this.state.selectedSite);
+        if (this.state.selectedModel) {        
+            const modelListings = await fetchListings({id: this.state.selectedModel, site: this.state.selectedSite});
+            console.log(modelListings);
             this.listingsContainer.innerHTML = '';
             
-            if (modelListings.data.length > 0) {
-                for (let i = 0; i < modelListings.data.length; i++) {
-                    const itemElement = createListingItem(modelListings.data[i]);
+            if (modelListings.length > 0) {
+                for (let i = 0; i < modelListings.length; i++) {
+                    const itemElement = createListingItem(modelListings[i]);
                     this.listingsContainer.appendChild(itemElement);
                 }
                 
@@ -66,16 +67,12 @@ class App {
     }
 
 
-    getSiteListings = (e) => {
-        const site = e.target.value;
+    getSiteListings = async (e) => {
+        this.state.selectedSite = e.target.value;
 
-        let siteListings = this.state.listings.data.filter(item => item.site === site);
+        const modelListings = await fetchListings({id: this.state.selectedModel, site: this.state.selectedSite});
 
-        if(!site) {
-            siteListings = this.state.listings.data;
-        }
-
-        this.createListingsGrid(siteListings);
+        this.createListingsGrid(modelListings);
         
         this.createResetButton(this.filtersContainer);
 
@@ -147,7 +144,7 @@ class App {
 
         if(e.target.id === 'listing-details') {
             const listingId = parseInt(e.target.closest('.listing').dataset.listingId);
-            const listings = this.state.listings.data;
+            const listings = this.state.listings;
             this.state.currentListingData = listings.find(obj => obj.id === listingId);
 
             if(this.state.currentListingData) {
@@ -174,7 +171,7 @@ class App {
     }
 
     createListingsGrid(listings) {
-        let list = this.state.listings.data;
+        let list = this.state.listings;
         if(listings) list = listings;
 
         this.listingsContainer.innerHTML = '';
