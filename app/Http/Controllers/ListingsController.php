@@ -19,7 +19,7 @@ class ListingsController extends Controller
         $model_id = $request->query('model_id');
         $category = $request->query('category_id');
 
-        $query = Listing::with('listingModel')->where('active', 1)->where('model_id', '!=', 24)->orderBy('added', 'desc');
+        $query = Listing::with('listingModel')->where('active', 1)->where('model_id', '<', 24)->orderBy('added', 'desc');
 
         if($id) {
             $query->where('id', $id);
