@@ -53,8 +53,8 @@ class App {
 
             const modelStats = this.generateStatistics(modelListings);
             this.statistics.innerHTML = `
-            <div>Avg price for ${e.target[e.target.value].text} on ss.lv : <span style="font-weight:bold">${modelStats.ss.averageModelPrice}€</span> / ${modelStats.ss.modelCount} units.</div>
-            <div>Avg price for ${e.target[e.target.value].text} on andelemandele.lv : <span style="font-weight:bold">${modelStats.andelemandele.averageModelPrice}€</span> / ${modelStats.andelemandele.modelCount} units.</div>
+            <div>Avg price for ${document.querySelector(`option[value="${e.target.value}"]`).text} on ss.lv : <span style="font-weight:bold">${modelStats.ss.averageModelPrice}€</span> / ${modelStats.ss.modelCount} units.</div>
+            <div>Avg price for ${document.querySelector(`option[value="${e.target.value}"]`).text} on andelemandele.lv : <span style="font-weight:bold">${modelStats.andelemandele.averageModelPrice}€</span> / ${modelStats.andelemandele.modelCount} units.</div>
             `
 
             this.listingsContainer.innerHTML = '';
