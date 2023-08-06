@@ -22,6 +22,7 @@ class App {
         this.filtersContainer = document.querySelector('.filters');
         this.modelsOptions = document.querySelector('#models');
         this.siteOption = document.querySelector('#site');
+        this.statistics = document.querySelector('#statistics');
         this.events();
     }
 
@@ -49,7 +50,13 @@ class App {
         
         if (this.state.selectedModel) {        
             const modelListings = await fetchListings({id: this.state.selectedModel, site: this.state.selectedSite});
-            console.log(modelListings);
+
+            const modelStats = this.generateStatistics(modelListings);
+            this.statistics.innerHTML = `
+            <div>Avg price for ${e.target[e.target.value].text} on ss.lv : <span style="font-weight:bold">${modelStats.ss.averageModelPrice}€</span> / ${modelStats.ss.modelCount} units.</div>
+            <div>Avg price for ${e.target[e.target.value].text} on andelemandele.lv : <span style="font-weight:bold">${modelStats.andelemandele.averageModelPrice}€</span> / ${modelStats.andelemandele.modelCount} units.</div>
+            `
+
             this.listingsContainer.innerHTML = '';
             
             if (modelListings.length > 0) {
@@ -78,7 +85,6 @@ class App {
 
     }
 
-
     createModelOptions() {
         const models = [...this.state.models].reverse();
         const defaultOption = document.createElement('option');
@@ -99,6 +105,7 @@ class App {
             e.target.remove();
 
             this.state.selectedModel = null;
+            this.statistics.innerHTML = '';
             this.modelsOptions.value = '';
             this.siteOption.value = '';
             this.resetProfitFilter();
@@ -185,6 +192,30 @@ class App {
         const el = document.querySelector('[data-filter="profit"]');
         el.setAttribute('data-direction', 'asc');
         el.querySelector('span').innerHTML = '';
+    }
+
+    generateStatistics(listings) {
+        const stats = {
+            ss: {},
+            andelemandele: {}
+        }
+
+        let avgSS = 0;
+        let avgAND = 0;
+
+        const ssListings = listings.filter(listing => listing.site === 'ss');
+        const andeleListings = listings.filter(listing => listing.site === 'andelemandele');
+
+        ssListings.forEach((item) => avgSS += item.price);
+        andeleListings.forEach((item) => avgAND += item.price);
+
+        stats.ss.averageModelPrice = avgSS ? parseInt(avgSS / ssListings.length) : 0;
+        stats.ss.modelCount = parseInt(ssListings.length);
+        
+        stats.andelemandele.averageModelPrice = avgAND ? parseInt(avgAND / andeleListings.length) : 0;
+        stats.andelemandele.modelCount = parseInt(andeleListings.length);
+
+        return stats;
     }
 }
 

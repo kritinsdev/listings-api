@@ -39,7 +39,10 @@ class InventorySeeder extends Seeder
                 'model' => 'iPhone 12',
                 'bought_for' => 250,
                 'date_bought' => Carbon::create(2023, 7, 28),
-                'imei' => null,
+                'sold_for' => 320,
+                'date_sold' => Carbon::create(2023, 8, 5),
+                'profit' => 70,
+                'imei' => '353055118366514',
             ],
             [
                 'model' => 'iPhone 11',

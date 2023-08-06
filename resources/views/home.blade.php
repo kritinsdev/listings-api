@@ -52,6 +52,7 @@
             
             <div data-filter="profit" data-direction="asc">Potential profit <span data-direction-arrow></span></div>
         </section>
+        <div id="statistics"></div>
         
         <section class="listings"></section>
     </main>
