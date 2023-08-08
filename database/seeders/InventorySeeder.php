@@ -51,12 +51,6 @@ class InventorySeeder extends Seeder
                 'imei' => '356576100077055',
             ],
             [
-                'model' => 'iPhone XS Max + iPhone XS',
-                'bought_for' => 160,
-                'date_bought' => Carbon::create(2023, 8, 7),
-                'imei' => null,
-            ],
-                        [
                 'model' => 'iPhone X',
                 'bought_for' => 50,
                 'date_bought' => Carbon::create(2023, 8, 7),
