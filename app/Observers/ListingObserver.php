@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Models\Blacklist;
 use App\Models\Listing;
 use App\Models\ModelStat;
-use App\Models\PriceHistory;
 
 class ListingObserver
 {
@@ -13,51 +12,46 @@ class ListingObserver
     {
         $modelStat = ModelStat::firstOrCreate(
             ['model_id' => $listing->model_id],
-            ['count' => 0, 'average_price' => 0, 'lowest_price' => $listing->price]
+            ['count' => 0, 'average_price' => 0]
         );
-
+    
         $modelStat->increment('count');
-        $modelStat->average_price = Listing::where('model_id', $listing->model_id)->average('price');
-        $modelStat->lowest_price = Listing::where('model_id', $listing->model_id)->min('price');
+    
+        $prices = Listing::where('model_id', $listing->model_id)->orderBy('price')->pluck('price')->all();
+        $count = count($prices);
+        $median = ($count % 2)
+            ? $prices[floor($count / 2)]
+            : ($prices[$count / 2 - 1] + $prices[$count / 2]) / 2;
+    
+        $modelStat->average_price = $median;
         $modelStat->save();
     }
 
     public function updated(Listing $listing): void
     {
-            if ($listing->isDirty('price')) {
-                PriceHistory::create([
-                    'listing_id' => $listing->id,
-                    'old_price' => $listing->getOriginal('price'),
-                    'new_price' => $listing->price,
-                    'change_date' => now(),
-                ]);
-            }
 
-            $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
-            if ($modelStat) {
-                $modelStat->average_price = Listing::where('model_id', $listing->model_id)->average('price');
-                $modelStat->save();
-            }
     }
 
     public function deleted(Listing $listing): void
     {
         $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
-        $modelStat->count = $modelStat->count - 1;
-
-        $totalPrice = Listing::where('model_id', $listing->model_id)->sum('price');
-        $modelStat->average_price = $totalPrice / $modelStat->count;
-
-        $lowestPrice = Listing::where('model_id', $listing->model_id)->min('price');
-        $modelStat->lowest_price = $lowestPrice;
-
+        $modelStat->decrement('count');
+    
+        $prices = Listing::where('model_id', $listing->model_id)->orderBy('price')->pluck('price')->all();
+        $count = count($prices);
+        $median = ($count > 0)
+            ? ($count % 2 ? $prices[floor($count / 2)] : ($prices[$count / 2 - 1] + $prices[$count / 2]) / 2)
+            : 0;
+    
+        $modelStat->average_price = $median;
+        $modelStat->save();
+    
         $blacklist = new Blacklist;
         $blacklist->url = $listing->url;
         $blacklist->site = $listing->site;
         $blacklist->save();
-
-        $modelStat->save();
     }
+    
 
     public function restored(Listing $listing): void
     {

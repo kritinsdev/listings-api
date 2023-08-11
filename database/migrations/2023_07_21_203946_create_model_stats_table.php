@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('model_stats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('model_id')->constrained('phone_models');
+            $table->foreignId('model_id')->constrained('listing_models');
             $table->integer('count');
             $table->decimal('average_price', 8, 2);
-            $table->decimal('lowest_price', 8, 2);
         });
     }
 

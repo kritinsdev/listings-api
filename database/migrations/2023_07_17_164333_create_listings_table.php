@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
-            $table->foreign('model_id')->references('id')->on('phone_models');
+            $table->foreign('model_id')->references('id')->on('listing_models');
             $table->unsignedBigInteger('model_id');
             $table->double('price')->required();
             $table->integer('memory')->nullable();
-            $table->integer('battery_capacity')->nullable();
             $table->string('added')->required();
             $table->string('url')->unique();
+            $table->string('site')->required();
         });
     }
 

@@ -11,19 +11,16 @@ class Listing extends Model
 
     protected $fillable = [
         'model_id',
-        'category_id',
         'price',
+        'memory',
         'added',
         'url',
         'site'
     ];
 
-    public $timestamps = false;
+    protected $dates = ['added'];
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
+    public $timestamps = false;
 
     public function listingModel()
     {
@@ -33,15 +30,5 @@ class Listing extends Model
     public function modelStats()
     {
         return $this->hasOne(ModelStat::class, 'model_id', 'model_id');
-    }
-
-    public function priceHistories()
-    {
-        return $this->hasMany(PriceHistory::class);
-    }
-
-    public function listingDetail()
-    {
-        return $this->hasOne(ListingDetail::class);
     }
 }

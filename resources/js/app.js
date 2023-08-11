@@ -10,9 +10,6 @@ class App {
             selectedModel: null,
             selectedSite: null,
             currentListingData: null,
-            filters: {
-                category: 1
-            }
         },
 
         this.pageBody = document.querySelector('body');

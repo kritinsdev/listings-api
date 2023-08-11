@@ -50,12 +50,6 @@ class InventorySeeder extends Seeder
                 'date_bought' => Carbon::create(2023, 8, 4),
                 'imei' => '356576100077055',
             ],
-            [
-                'model' => 'iPhone X',
-                'bought_for' => 50,
-                'date_bought' => Carbon::create(2023, 8, 7),
-                'imei' => null,
-            ],
         ];
 
         foreach ($data as $item) {

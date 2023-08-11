@@ -17,9 +17,8 @@ class ListingsController extends Controller
         $url = $request->query('url');
         $site = $request->query('site');
         $model_id = $request->query('model_id');
-        $category = $request->query('category_id');
 
-        $query = Listing::with('listingModel')->where('active', 1)->where('model_id', '<', 24)->orderBy('added', 'desc');
+        $query = Listing::with('listingModel')->where('active', 1)->where('model_id', '<', 66)->orderBy('added', 'desc');
 
         if($id) {
             $query->where('id', $id);
@@ -35,10 +34,6 @@ class ListingsController extends Controller
 
         if ($model_id) {
             $query->where('model_id', $model_id);
-        }
-
-        if($category) {
-            $query->where('category_id', $category);
         }
 
         $listings = $query->get();
@@ -69,21 +64,20 @@ class ListingsController extends Controller
     {
         $validatedData = $request->validate([
             'model_id' => 'required|exists:listing_models,id',
-            'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
+            'memory' => 'numeric|nullable',
             'added' => 'required|string',
             'url' => 'required',
             'site' => 'required|string',
         ]);
 
         $listing = Listing::create($validatedData);
-
-        $modelStat = ModelStat::where('model_id', $listing->model_id)->first();
-
         $listing['model'] = $listing->listingModel->model_name;
 
-        if($listing->model_id < 22) {
-            if (($modelStat->average_price - $listing->price) >= 70) {
+        
+
+        if($listing->model_id < 86) {
+            if ($listing->price + 50 <= $listing->listingModel->model_price) {
                 Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
             }
         }

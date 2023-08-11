@@ -9,13 +9,7 @@ class ListingModelsController extends Controller
 {
     public function index(Request $request)
     {
-        $category_id = $request->query('category_id');
-
         $query = ListingModel::with('modelStats');
-
-        if ($category_id) {
-            $query->where('category_id', $category_id);
-        }
 
         $models = $query->get();
 

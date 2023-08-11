@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;700&display=swap" rel="stylesheet">
     @vite(['resources/css/main.css', 'resources/js/app.js'])
 </head>
-
 <body>
     <header>
         <nav>
@@ -21,6 +20,9 @@
                 </li>
                 <li>
                     <a href="{{ route('inventory') }}">Inventory</a>
+                </li>
+                <li>
+                    <a href="{{ route('latest') }}">Latest</a>
                 </li>
             </ul>
         </nav>
@@ -43,11 +45,7 @@
                 <option value="andelemandele">Andelemandele.lv</option>
                 <option value="ss">SS.LV</option>
             </select>
-            {{-- <select name="category" id="category">
-                <option value="0">All Listings</option>
-                <option value="1">Phones</option>
-                <option value="2">Game Consoles</option>
-            </select> --}}
+
             <select name="models" id="models"></select>
             
             <div data-filter="profit" data-direction="asc">Potential profit <span data-direction-arrow></span></div>

@@ -13,27 +13,25 @@ class ListingCreated extends Mailable
     use Queueable, SerializesModels;
     
     public $listing;
-    public $model_name;
-
+    public $modelName;
     public $modelStat;
+    public $modelPrice;
 
-    /**
-     * Create a new message instance.
-     */
     public function __construct(Listing $listing)
     {
         $this->listing = $listing;
         $this->modelStat = ModelStat::where('model_id', $listing->model_id)->first();
-        $this->model_name = $listing->listingModel ? $listing->listingModel->model_name : 'Unknown';
+        $this->modelName = $listing->listingModel ? $listing->listingModel->model_name : 'unknown';
+        $this->modelPrice = $listing->listingModel ? $listing->listingModel->model_price : null;
     }
 
     public function build()
     {
         return $this->view('emails.listing_created')
-        ->subject('Difference: +' . $this->modelStat->average_price - $this->listing->price . '€' . ' (' . $this->listing->listingModel->model_name . ')')
+        ->subject('Difference: +' . $this->modelPrice - $this->listing->price . '€' . ' (' . $this->listing->listingModel->model_name . ')')
         ->with([
             'listing' => $this->listing,
-            'model_name' => $this->model_name,
+            'model_name' => $this->modelName,
         ]);
     }
 }

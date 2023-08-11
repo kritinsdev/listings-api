@@ -22,8 +22,6 @@ class UserSeeder extends Seeder
 
         $token = $user->createToken('api_token')->plainTextToken;
 
-        // If you need to use the token, you can print it to the console
-        // or store it somewhere else
         echo $token;
     }
 }
