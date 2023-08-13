@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\ListingResource;
 use App\Mail\ListingCreated;
 use App\Models\Listing;
-use App\Models\ModelStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Controller;
 
 class ListingsController extends Controller
 {

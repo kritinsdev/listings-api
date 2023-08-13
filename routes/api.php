@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ListingsController;
-use App\Http\Controllers\ListingModelsController;
-use App\Http\Controllers\ListingDetailController;
-use App\Http\Controllers\ModelStatController;
-use App\Http\Controllers\BlacklistController;
+use App\Http\Controllers\Api\ListingsController;
+use App\Http\Controllers\Api\ListingModelsController;
+use App\Http\Controllers\Api\ListingDetailController;
+use App\Http\Controllers\Api\ModelStatController;
+use App\Http\Controllers\Api\BlacklistController;
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::get('/listings', [ListingsController::class, 'index']);

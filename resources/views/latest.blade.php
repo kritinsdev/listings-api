@@ -31,7 +31,6 @@
         </div>
     </header>
     <main>
-        <h1>Latest listings</h1>
         <section class="listings">
             @foreach($listings as $listing)
             <div class="listing">

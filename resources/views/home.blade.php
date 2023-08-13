@@ -21,9 +21,6 @@
                 <li>
                     <a href="{{ route('inventory') }}">Inventory</a>
                 </li>
-                <li>
-                    <a href="{{ route('latest') }}">Latest</a>
-                </li>
             </ul>
         </nav>
         <div>
@@ -34,37 +31,12 @@
         </div>
     </header>
     <main>
-        <section class="filters">
-            <div class="avg-prices" id="avg-prices">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-            </div>
-            <select name="site" id="site">
-                <option value>All Sites</option>
-                <option value="andelemandele">Andelemandele.lv</option>
-                <option value="ss">SS.LV</option>
-            </select>
-
-            <select name="models" id="models"></select>
-            
-            <div data-filter="profit" data-direction="asc">Potential profit <span data-direction-arrow></span></div>
+        <section class="listings">
+            @foreach($listings as $listing)  
+                <x-listing-item :listing="$listing" />
+            @endforeach
         </section>
-        <div id="statistics"></div>
-        
-        <section class="listings"></section>
     </main>
-
-    <div class="loader">
-        <div class="loader-content">
-            <div class="lds-ellipsis">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>

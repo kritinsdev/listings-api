@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\ModelStat;
+use App\Models\ListingModel;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
-class ModelStatController extends Controller
+class ListingModelsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $modelStats = ModelStat::all();
+        $query = ListingModel::with('modelStats');
 
-        return response()->json($modelStats);
+        $models = $query->get();
+
+        return response()->json($models);
     }
 
     /**

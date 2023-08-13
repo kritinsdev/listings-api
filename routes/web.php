@@ -9,26 +9,18 @@ use Carbon\Carbon;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
-        return view('home');
-    })->name('home');
-
-    Route::get('/latest', function () {
-        $today = Carbon::yesterday()->toDateString();
+        $today = Carbon::today()->toDateString();
         $listingsQuery = Listing::with('listingModel')
-            ->where('model_id', '<', 87)
-            ->whereDate('added', $today)
+            // ->where('model_id', '<', 87)
+            // ->whereDate('added', $today)
             ->orderBy('added', 'desc');
 
-        $listings = ListingResource::collection($listingsQuery->paginate(25));
-        return view('latest', [
+        $listings = ListingResource::collection($listingsQuery->paginate(1));
+
+        return view('home', [
             'listings' => $listings
         ]);
-    })->name('latest');
-
-    Route::get('/statistics', function () {
-        return view('statistics');
-    })->name('statistics');
-
+    })->name('home');
 
     Route::get('/test', function () {
         return view('test');

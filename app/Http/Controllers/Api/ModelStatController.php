@@ -1,27 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Blacklist;
+use App\Models\ModelStat;
 use Illuminate\Http\Request;
-
-class BlacklistController extends Controller
+use App\Http\Controllers\Controller;
+class ModelStatController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $site = $request->query('site');
-        $query = Blacklist::select('url');
-    
-        if ($site !== null) {
-            $query->where('site', $site);
-        }
-    
-        $urls = $query->get();
-    
-        return response()->json($urls);
+        $modelStats = ModelStat::all();
+
+        return response()->json($modelStats);
     }
 
     /**
@@ -37,14 +30,7 @@ class BlacklistController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'url' => 'required|string',
-            'site' => 'required|string',
-        ]);
-
-        $blacklistUrl = Blacklist::create($validatedData);
-
-        return response()->json($blacklistUrl, 201);
+        //
     }
 
     /**
