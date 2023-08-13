@@ -4,9 +4,11 @@ $modelPrice = $listing->listingModel->model_price;
 $listingPrice = $listing->price;
 
 if(!empty($modelPrice)) {
-    if($modelPrice - $listingPrice >= 30) {
+    if($modelPrice - $listingPrice >= 0) {
         $class = 'dark-green';
-    } else if($modelPrice - $listingPrice > 0 && $modelPrice - $listingPrice < 30) { $class='light-green' ; } else if($modelPrice - $listingPrice < 0 && $modelPrice - $listingPrice> -50) {
+    } else if($modelPrice - $listingPrice < 0 && $modelPrice - $listingPrice > -25)  { 
+        $class='light-green' ; 
+    } else if($modelPrice - $listingPrice <= -25 && $modelPrice - $listingPrice > -60) {
         $class = 'grey';
     } else {
         $class = 'red';
@@ -15,9 +17,10 @@ if(!empty($modelPrice)) {
 
 @endphp
 
+
     <div class="row">
         <div class="cell" data-title="Model">
-            <a href="{{$listing->url}}">
+            <a href="{{$listing->url}}" target="_blank">
                 {{ $listing->listingModel->model_name }}
             </a>
         </div>

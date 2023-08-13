@@ -14,7 +14,7 @@ Route::middleware('auth')->group(function () {
             // ->whereDate('added', $today)
             ->orderBy('added', 'desc');
 
-        $listings = ListingResource::collection($listingsQuery->paginate(100));
+        $listings = ListingResource::collection($listingsQuery->paginate(30));
         return view('home', [
             'listings' => $listings
         ]);

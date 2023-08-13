@@ -65,6 +65,10 @@
                 @endforeach
             </div>
         </div>
+
+        <div class="pagination">
+            {{ $listings->links() }}
+        </div>
     </main>
 </body>
 

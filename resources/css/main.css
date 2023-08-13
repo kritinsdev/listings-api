@@ -54,6 +54,7 @@ svg {
 
 main {
   padding: 0 24px;
+  padding-bottom: 24px;
 }
 
 section {
@@ -235,4 +236,13 @@ table th,
 table td {
   padding: .5em;
   border: 1px solid lightgrey;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap:16px;
+  list-style: none;
+  padding: 0;
 }

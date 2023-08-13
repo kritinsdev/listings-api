@@ -77,7 +77,7 @@ class ListingsController extends Controller
         
 
         if($listing->model_id < 86) {
-            if ($listing->price + 50 <= $listing->listingModel->model_price) {
+            if ($listing->listingModel->model_price - $listing->price > 0) {
                 Mail::to('krlistingstrackcer@gmail.com')->send(new ListingCreated($listing));
             }
         }
