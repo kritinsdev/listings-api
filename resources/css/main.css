@@ -60,249 +60,31 @@ section {
   padding: 16px 0;
 }
 
-.disabled {
-  pointer-events: none;
-  color: #a5a5a5 !important;
-  background-color: rgb(236, 236, 236) !important;
-}
-
-#reset {
-  background-color: rgb(183, 64, 64);
-  color: #fff;
-  padding: 4px 16px;
-  border-radius: 10px;
-  text-transform: uppercase;
-  width: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
-
-#reset:hover {
-  cursor: pointer;
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.filters > * {
-  width: calc(50% - 4px);
-  height: 38px;
-}
-
-
-@media only screen and (min-width: 640px) {
-  .filters > * {
-    width: initial;
-  }
-}
-
-
-select {
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  outline: none;
-  border: 2px solid #26408ced;
-  border-radius: 10px;
-  padding: 4px 8px;
-}
-
-select:hover {
-  cursor: pointer;
-}
-
-#models:hover {
-  cursor: pointer;
-}
-
-.filters button:hover {
-  cursor: pointer;
-}
-
-.filters [data-filter="profit"] {
-  display: flex;
-  align-items: center;
-  background-color: #26408c;
-  color:#fff;
-  border-radius: 10px;
-  padding:0 8px;
-}
-
-.filters [data-filter="profit"]:hover {
-  background-color: #375ac2;
-  cursor: pointer;
-}
-
-.listings {
-  display: grid;
-  grid-template-columns: auto;
-  gap: 16px;
-}
-
-.processing {
-  filter: blur(8px);
-}
-
-@media only screen and (min-width: 640px) {
-  .listings {
-    gap: 24px;
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .listings {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-.listing {
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #191919;
-  padding: 8px;
-  padding-top: 28px;
-  box-sizing: border-box;
-  position: relative;
-}
-
-.listing .model {
-  font-weight: bold;
+.profit {
   text-align: center;
-  font-size: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding:12px 0;
-}
-
-.listing .model-name {
-  
-}
-
-.site {
-  position: absolute;
-  top:-12px;
-  left:-6px;
-}
-
-.listing .detail {
-  font-weight: 400;
-  font-size: 16px;
-  text-align: right;
-}
-
-.detail-ss {
-  background-color: #33aa4c;
-  font-weight: bold;
-  display: inline-flex;
-  padding:0 8px;
-  border-radius: 4px;
-  color:#fff;
-  text-transform: uppercase;
-}
-
-.detail-andelemandele {
-  background-color: #282828;
-  font-weight: bold;
-  display: inline-flex;
-  color:#fff;
-  padding:0 8px;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
-.listing .price-history {
-  display: flex;
-}
-
-.listing .price {
-  font-weight: bold;
-  font-size: 28px;
-  background-color: #26408ced;
-  color: #fff;
-  text-align: center;
-  border-radius: 10px;
-  position: relative;
-  display: flex;
-  width: 100%;
-  text-decoration: none;
-  justify-content: center;
-  margin-top: 8px;
-}
-
-.listing .price:hover {
-  background-color: #3254bced;
-}
-
-.listing .old-price {
-  position: absolute;
-  top: 40%;
-  right: 18%;
-  font-size: 18px;
-  transform: translate(50%, -50%);
-  text-decoration: line-through;
-}
-
-
-@media only screen and (min-width: 640px) {
-  .listing .old-price {
-    right: 28%;
-  }
-}
-
-.listing .price-direction {
-  position: absolute;
-  top: -4px;
-  left: 12px;
-  font-size: 32px;
-}
-
-@media only screen and (min-width: 640px) {
-  .listing .price-direction {
-    top: -4px;
-  }
-}
-
-.listing .price-direction.up {
-  color: red;
-}
-
-.listing .price-direction.down {
-  color: #0aff00;
-}
-
-.listing .profit {
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  padding:4px 8px;
-  border-radius: 4px;
 }
 
 .profit-grey {
-  color: #777;
+  color:#fff;
+  background-color: #777;
   font-weight:bold;
 }
 
 .profit-light-green {
-  color: rgb(193 255 191);
+  color:#333;
+  background-color: rgb(193 255 191);
   font-weight:bold;
 }
 
 .profit-dark-green {
-  color: #299840;
+  color:#fff;
+  background-color: #299840;
   font-weight:bold;
 }
 
 .profit-red {
-  color: #D0342C ;
+  color:#fff;
+  background-color: #D0342C ;
   font-weight:bold;
 }
 

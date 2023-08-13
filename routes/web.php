@@ -3,7 +3,6 @@
 use App\Http\Controllers\InventoryController;
 use App\Http\Resources\ListingResource;
 use App\Models\Listing;
-use App\Models\ModelStat;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 
@@ -15,8 +14,7 @@ Route::middleware('auth')->group(function () {
             // ->whereDate('added', $today)
             ->orderBy('added', 'desc');
 
-        $listings = ListingResource::collection($listingsQuery->paginate(18));
-        // dd($listings);
+        $listings = ListingResource::collection($listingsQuery->paginate(100));
         return view('home', [
             'listings' => $listings
         ]);

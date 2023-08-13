@@ -43,9 +43,6 @@
                     <div class="cell">
                         Model
                     </div>
-                    {{-- <div class="cell">
-                        Site
-                    </div> --}}
                     <div class="cell">
                         Added
                     </div>
@@ -53,7 +50,10 @@
                         Price
                     </div>
                     <div class="cell">
-                        Profit Margin
+                        Price Difference
+                    </div>
+                    <div class="cell">
+                        Site
                     </div>
                     <div class="cell">
                         Options
