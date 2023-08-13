@@ -7,27 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class ModelStatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $modelStats = ModelStat::all();
 
         return response()->json($modelStats);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //

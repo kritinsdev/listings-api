@@ -11,12 +11,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         $today = Carbon::today()->toDateString();
         $listingsQuery = Listing::with('listingModel')
-            // ->where('model_id', '<', 87)
+            ->where('model_id', '<', 87)
             // ->whereDate('added', $today)
             ->orderBy('added', 'desc');
 
-        $listings = ListingResource::collection($listingsQuery->paginate(1));
-
+        $listings = ListingResource::collection($listingsQuery->paginate(18));
+        // dd($listings);
         return view('home', [
             'listings' => $listings
         ]);

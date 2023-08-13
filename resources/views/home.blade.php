@@ -24,18 +24,47 @@
             </ul>
         </nav>
         <div>
-            <form method="POST" action="{{ route('logout') }}" style="display:flex; height:100%;">
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit">Logout</button>
             </form>
         </div>
     </header>
     <main>
-        <section class="listings">
+        {{-- <section class="listings">
             @foreach($listings as $listing)  
                 <x-listing-item :listing="$listing" />
             @endforeach
-        </section>
+        </section> --}}
+
+     <div class="table-wrap">
+            <div class="table">
+                <div class="row header">
+                    <div class="cell">
+                        Model
+                    </div>
+                    {{-- <div class="cell">
+                        Site
+                    </div> --}}
+                    <div class="cell">
+                        Added
+                    </div>
+                    <div class="cell">
+                        Price
+                    </div>
+                    <div class="cell">
+                        Profit Margin
+                    </div>
+                    <div class="cell">
+                        Options
+                    </div>
+                </div>
+
+                @foreach ($listings as $listing)
+                     <x-listing-item :listing="$listing" />
+                @endforeach
+            </div>
+        </div>
     </main>
 </body>
 
