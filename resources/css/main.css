@@ -60,9 +60,12 @@ section {
   padding: 16px 0;
 }
 
-.profit {
-  text-align: center;
+@media screen and (min-width: 767px) {
+  .profit {
+    text-align: center;
+  }
 }
+
 
 .profit-grey {
   color:#fff;
@@ -194,8 +197,9 @@ header nav ul li div {
     line-height: 10px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #969696;
     display: block;
+    text-align: left;
+    padding:4px;
   }
 }
 
