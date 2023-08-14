@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,10 +19,14 @@ class Listing extends Model
         'site'
     ];
 
+    protected $casts = [
+        'added' => 'datetime',
+    ];
+
     protected $dates = ['added'];
 
     public $timestamps = false;
-
+    
     public function listingModel()
     {
         return $this->belongsTo(ListingModel::class, 'model_id');

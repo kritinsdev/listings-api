@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('model_id');
             $table->double('price')->required();
             $table->integer('memory')->nullable();
-            $table->string('added')->required();
+            $table->dateTime('added')->required();
             $table->string('url')->unique();
             $table->string('site')->required();
         });
