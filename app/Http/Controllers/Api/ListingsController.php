@@ -18,7 +18,7 @@ class ListingsController extends Controller
         $site = $request->query('site');
         $model_id = $request->query('model_id');
 
-        $query = Listing::with('listingModel')->where('active', 1)->where('model_id', '<', 66)->orderBy('added', 'desc');
+        $query = Listing::with('listingModel')->where('model_id', '<', 66)->orderBy('added', 'desc');
 
         if($id) {
             $query->where('id', $id);
@@ -44,12 +44,7 @@ class ListingsController extends Controller
     public function getUrls(Request $request)
     {
         $site = $request->query('site');
-        $active = $request->query('active');
         $query = Listing::select(['id', 'url']);
-    
-        if($active !== null) {
-            $query->where('active', $active);
-        }
     
         if ($site !== null) {
             $query->where('site', $site);
@@ -105,7 +100,6 @@ class ListingsController extends Controller
     {
         $validatedData = $request->validate([
             'price' => 'numeric',
-            'active' => 'required|boolean'
         ]);
 
         $listing = Listing::findOrFail($id);
@@ -113,8 +107,6 @@ class ListingsController extends Controller
         if (!empty($validatedData['price'])) {
             $listing->price = $validatedData['price'];
         }
-
-        $listing->active = $validatedData['active'];
 
         $listing->save();
 
