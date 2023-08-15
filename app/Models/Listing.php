@@ -18,7 +18,6 @@ class Listing extends Model
         'url',
         'site'
     ];
-
     protected $casts = [
         'added' => 'datetime',
     ];
