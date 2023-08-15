@@ -15,6 +15,8 @@ class Inventory extends Model
         'date_bought',
         'sold_for',
         'date_sold',
+        'target_price',
+        'potential_profit',
         'profit',
         'imei',
     ];

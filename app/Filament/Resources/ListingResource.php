@@ -20,7 +20,9 @@ class ListingResource extends Resource
 {
     protected static ?string $model = Listing::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Main';
+
+    protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
 
     public static function form(Form $form): Form
     {
