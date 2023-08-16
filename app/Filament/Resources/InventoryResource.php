@@ -57,9 +57,18 @@ class InventoryResource extends Resource
                     }
                 }),
             TextInput::make('potential_profit')->prefix('€'),
-            TextInput::make('sold_for')->prefix('€'),
+            TextInput::make('sold_for')
+            ->prefix('€')
+            ->reactive()
+            ->afterStateUpdated(function ($state, $get, $set) {
+                $boughtFor = $get('bought_for');
+                if ($boughtFor !== null) {
+                    $profit = $state - $boughtFor;
+                    $set('profit', $profit);
+                }
+            }),
             DatePicker::make('date_sold'),
-            TextInput::make('profit'),
+            TextInput::make('profit')->reactive(),
             TextInput::make('imei'),
         ]);
     }
@@ -73,7 +82,14 @@ class InventoryResource extends Resource
                 TextColumn::make('bought_for')->money('eur'),
 
                 TextColumn::make('bought_for')
-                ->summarize(Sum::make()->label('Total Spent')->money('eur')),
+                ->summarize(
+                    Sum::make()
+                    ->label('Inventory Value')
+                    ->money('eur')
+                    ->query(function ($query) {
+                        return $query->whereNull('date_sold');
+                    })
+                ),
 
                 TextColumn::make('date_bought')
                     ->date(),
